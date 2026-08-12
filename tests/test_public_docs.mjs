@@ -151,6 +151,7 @@ test("compatibility guide states the exact boundary and known limits", async () 
 test("verification workflow is read-only and pins the required toolchain and deterministic checks", async () => {
   const workflow = await requiredText("public/.github/workflows/verify.yml");
   const installerRepro = await requiredText("scripts/verify-installer-repro.ps1");
+  const uiTestAssembly = await requiredText("installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/AssemblyInfo.cs");
   const verificationSurface = `${workflow}\n${installerRepro}`;
 
   assert.match(workflow, /^permissions:\s*\n\s+contents:\s+read\s*$/mu);
@@ -190,6 +191,7 @@ test("verification workflow is read-only and pins the required toolchain and det
   assert.match(workflow, /public export reproducibility mismatch|cmp .*PUBLIC-SHA256SUMS/iu);
   assert.match(workflow, /installer:[\s\S]*?timeout-minutes:\s*20/iu);
   assert.doesNotMatch(workflow, /dotnet test installer\/Apollo\.NativeAssist\.Installer\.sln/iu);
+  assert.match(uiTestAssembly, /CollectionBehavior\s*\(\s*DisableTestParallelization\s*=\s*true\s*\)/u);
   assert.doesNotMatch(workflow, /steamcmd|workshop.*upload|gh release|coolify|curl\s+.*(?:https?|ssh)|Invoke-WebRequest/iu);
 });
 
