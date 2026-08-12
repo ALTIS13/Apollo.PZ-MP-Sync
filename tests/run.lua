@@ -1,0 +1,30 @@
+package.path = "./?.lua;./?/init.lua;workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/?.lua;workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/client/?.lua;workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/server/?.lua;" .. package.path
+
+local A = require("tests.support.assertions")
+local Protocol = require("ApolloMPSync/Protocol")
+
+A.equal(Protocol.MOD_ID, "ApolloMPSyncB42")
+A.equal(Protocol.VERSION, 1)
+A.equal(Protocol.NAMESPACE, "ApolloMPSync")
+A.equal(Protocol.CHANNELS.player, "player")
+A.equal(Protocol.CHANNELS.action, "action")
+A.equal(Protocol.CHANNELS.vehicle, "vehicle")
+A.equal(Protocol.CHANNELS.trailer, "trailer")
+A.equal(Protocol.CHANNELS.parts, "parts")
+A.equal(Protocol.CHANNELS.ping, "ping")
+
+print("PASS package smoke")
+
+require("tests.test_protocol_core")
+require("tests.test_reconciliation")
+require("tests.test_actions")
+require("tests.test_vehicles")
+require("tests.test_config")
+require("tests.test_adapters")
+require("tests.test_runtime")
+require("tests.test_runtime_round1")
+require("tests.test_runtime_round2")
+require("tests.test_runtime_round3")
+require("tests.test_runtime_round4")
+require("tests.test_native_only")
+require("tests.test_native_bridge")

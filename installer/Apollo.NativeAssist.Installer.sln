@@ -1,0 +1,48 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.NativeAssist.Installer.Core", "src\Apollo.NativeAssist.Installer.Core\Apollo.NativeAssist.Installer.Core.csproj", "{A57E1380-381A-4D45-A460-1CB1815EBF85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.NativeAssist.Installer.Core.Tests", "tests\Apollo.NativeAssist.Installer.Core.Tests\Apollo.NativeAssist.Installer.Core.Tests.csproj", "{3C3906E1-BD16-4B6D-B3A5-63214A0E315A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.NativeAssist.Installer.Infrastructure", "src\Apollo.NativeAssist.Installer.Infrastructure\Apollo.NativeAssist.Installer.Infrastructure.csproj", "{CE031622-48E4-4C50-AC07-42C5FBB88659}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.NativeAssist.Installer.Infrastructure.Tests", "tests\Apollo.NativeAssist.Installer.Infrastructure.Tests\Apollo.NativeAssist.Installer.Infrastructure.Tests.csproj", "{663AF09A-342F-4F94-B8A3-0250252540E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.NativeAssist.Installer", "src\Apollo.NativeAssist.Installer\Apollo.NativeAssist.Installer.csproj", "{5E10BF7F-D67D-4D94-A458-F211475E71CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.NativeAssist.Installer.Ui.Tests", "tests\Apollo.NativeAssist.Installer.Ui.Tests\Apollo.NativeAssist.Installer.Ui.Tests.csproj", "{1CBA48AE-F393-42B4-B2C8-A49F996CD819}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A57E1380-381A-4D45-A460-1CB1815EBF85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A57E1380-381A-4D45-A460-1CB1815EBF85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A57E1380-381A-4D45-A460-1CB1815EBF85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A57E1380-381A-4D45-A460-1CB1815EBF85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C3906E1-BD16-4B6D-B3A5-63214A0E315A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C3906E1-BD16-4B6D-B3A5-63214A0E315A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C3906E1-BD16-4B6D-B3A5-63214A0E315A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C3906E1-BD16-4B6D-B3A5-63214A0E315A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE031622-48E4-4C50-AC07-42C5FBB88659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE031622-48E4-4C50-AC07-42C5FBB88659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE031622-48E4-4C50-AC07-42C5FBB88659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE031622-48E4-4C50-AC07-42C5FBB88659}.Release|Any CPU.Build.0 = Release|Any CPU
+		{663AF09A-342F-4F94-B8A3-0250252540E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{663AF09A-342F-4F94-B8A3-0250252540E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{663AF09A-342F-4F94-B8A3-0250252540E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{663AF09A-342F-4F94-B8A3-0250252540E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E10BF7F-D67D-4D94-A458-F211475E71CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E10BF7F-D67D-4D94-A458-F211475E71CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E10BF7F-D67D-4D94-A458-F211475E71CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E10BF7F-D67D-4D94-A458-F211475E71CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CBA48AE-F393-42B4-B2C8-A49F996CD819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CBA48AE-F393-42B4-B2C8-A49F996CD819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CBA48AE-F393-42B4-B2C8-A49F996CD819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CBA48AE-F393-42B4-B2C8-A49F996CD819}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

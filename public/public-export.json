@@ -1,0 +1,1077 @@
+[
+  {
+    "source": ".github/workflows/release.yml",
+    "destination": ".github/workflows/release.yml",
+    "kind": "file"
+  },
+  {
+    "source": ".github/workflows/verify.yml",
+    "destination": ".github/workflows/verify.yml",
+    "kind": "file"
+  },
+  {
+    "source": "compatibility-current-live.md",
+    "destination": "compatibility-current-live.md",
+    "kind": "file"
+  },
+  {
+    "source": "deploy/apollo-native-entrypoint.sh",
+    "destination": "deploy/apollo-native-entrypoint.sh",
+    "kind": "file"
+  },
+  {
+    "source": "deploy/apollo-native.env.example",
+    "destination": "deploy/apollo-native.env.example",
+    "kind": "file"
+  },
+  {
+    "source": "deploy/compose.native-assist.override.yaml",
+    "destination": "deploy/compose.native-assist.override.yaml",
+    "kind": "file"
+  },
+  {
+    "source": "deploy/fingerprint.template.properties",
+    "destination": "deploy/fingerprint.template.properties",
+    "kind": "file"
+  },
+  {
+    "source": "deploy/fingerprints/pz-42.20.2-build-24574884.native-libraries.sha256",
+    "destination": "deploy/fingerprints/pz-42.20.2-build-24574884.native-libraries.sha256",
+    "kind": "file"
+  },
+  {
+    "source": "deploy/fingerprints/pz-42.20.2-build-24574884.properties",
+    "destination": "deploy/fingerprints/pz-42.20.2-build-24574884.properties",
+    "kind": "file"
+  },
+  {
+    "source": "installer/Apollo.NativeAssist.Installer.sln",
+    "destination": "installer/Apollo.NativeAssist.Installer.sln",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer.Core/Apollo.NativeAssist.Installer.Core.csproj",
+    "destination": "installer/src/Apollo.NativeAssist.Installer.Core/Apollo.NativeAssist.Installer.Core.csproj",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer.Core/Contracts.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer.Core/Contracts.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer.Core/InstallationOrchestrator.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer.Core/InstallationOrchestrator.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer.Core/RedactedLog.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer.Core/RedactedLog.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer.Infrastructure/Apollo.NativeAssist.Installer.Infrastructure.csproj",
+    "destination": "installer/src/Apollo.NativeAssist.Installer.Infrastructure/Apollo.NativeAssist.Installer.Infrastructure.csproj",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer.Infrastructure/Docker/DockerComposeConnector.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer.Infrastructure/Docker/DockerComposeConnector.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer.Infrastructure/Properties/AssemblyInfo.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer.Infrastructure/Properties/AssemblyInfo.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer.Infrastructure/Ssh/IHostKeyProbe.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer.Infrastructure/Ssh/IHostKeyProbe.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer.Infrastructure/Ssh/IRemoteSession.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer.Infrastructure/Ssh/IRemoteSession.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer.Infrastructure/Ssh/SshHostKeyProbe.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer.Infrastructure/Ssh/SshHostKeyProbe.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer.Infrastructure/Ssh/SshRemoteSession.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer.Infrastructure/Ssh/SshRemoteSession.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer/Apollo.NativeAssist.Installer.csproj",
+    "destination": "installer/src/Apollo.NativeAssist.Installer/Apollo.NativeAssist.Installer.csproj",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer/App.xaml",
+    "destination": "installer/src/Apollo.NativeAssist.Installer/App.xaml",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer/App.xaml.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer/App.xaml.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer/Application/ConnectionInput.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer/Application/ConnectionInput.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer/Application/IInstallerSession.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer/Application/IInstallerSession.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer/Application/InstallerSessionFactory.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer/Application/InstallerSessionFactory.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer/Application/RecoveryRecordStore.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer/Application/RecoveryRecordStore.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer/Localization/Strings.en-US.xaml",
+    "destination": "installer/src/Apollo.NativeAssist.Installer/Localization/Strings.en-US.xaml",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer/Localization/Strings.ru-RU.xaml",
+    "destination": "installer/src/Apollo.NativeAssist.Installer/Localization/Strings.ru-RU.xaml",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer/MainWindow.xaml",
+    "destination": "installer/src/Apollo.NativeAssist.Installer/MainWindow.xaml",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer/MainWindow.xaml.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer/MainWindow.xaml.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer/Properties/AssemblyInfo.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer/Properties/AssemblyInfo.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer/Release/EmbeddedReleaseLoader.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer/Release/EmbeddedReleaseLoader.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer/Release/IReleaseResourceSource.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer/Release/IReleaseResourceSource.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer/ViewModels/AsyncCommand.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer/ViewModels/AsyncCommand.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/src/Apollo.NativeAssist.Installer/ViewModels/MainWindowViewModel.cs",
+    "destination": "installer/src/Apollo.NativeAssist.Installer/ViewModels/MainWindowViewModel.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/tests/Apollo.NativeAssist.Installer.Core.Tests/Apollo.NativeAssist.Installer.Core.Tests.csproj",
+    "destination": "installer/tests/Apollo.NativeAssist.Installer.Core.Tests/Apollo.NativeAssist.Installer.Core.Tests.csproj",
+    "kind": "file"
+  },
+  {
+    "source": "installer/tests/Apollo.NativeAssist.Installer.Core.Tests/InstallationOrchestratorTests.cs",
+    "destination": "installer/tests/Apollo.NativeAssist.Installer.Core.Tests/InstallationOrchestratorTests.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/tests/Apollo.NativeAssist.Installer.Infrastructure.Tests/Apollo.NativeAssist.Installer.Infrastructure.Tests.csproj",
+    "destination": "installer/tests/Apollo.NativeAssist.Installer.Infrastructure.Tests/Apollo.NativeAssist.Installer.Infrastructure.Tests.csproj",
+    "kind": "file"
+  },
+  {
+    "source": "installer/tests/Apollo.NativeAssist.Installer.Infrastructure.Tests/DockerComposeConnectorTests.cs",
+    "destination": "installer/tests/Apollo.NativeAssist.Installer.Infrastructure.Tests/DockerComposeConnectorTests.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/tests/Apollo.NativeAssist.Installer.Infrastructure.Tests/SshHostKeyProbeTests.cs",
+    "destination": "installer/tests/Apollo.NativeAssist.Installer.Infrastructure.Tests/SshHostKeyProbeTests.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/tests/Apollo.NativeAssist.Installer.Infrastructure.Tests/SshRemoteSessionTests.cs",
+    "destination": "installer/tests/Apollo.NativeAssist.Installer.Infrastructure.Tests/SshRemoteSessionTests.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/Apollo.NativeAssist.Installer.Ui.Tests.csproj",
+    "destination": "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/Apollo.NativeAssist.Installer.Ui.Tests.csproj",
+    "kind": "file"
+  },
+  {
+    "source": "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/EmbeddedReleaseLoaderTests.cs",
+    "destination": "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/EmbeddedReleaseLoaderTests.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/InstallerSessionTests.cs",
+    "destination": "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/InstallerSessionTests.cs",
+    "kind": "file"
+  },
+  {
+    "source": "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/MainWindowViewModelTests.cs",
+    "destination": "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/MainWindowViewModelTests.cs",
+    "kind": "file"
+  },
+  {
+    "source": "LICENSE",
+    "destination": "LICENSE",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/build.gradle.kts",
+    "destination": "native-assist/build.gradle.kts",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/gradle.lockfile",
+    "destination": "native-assist/gradle.lockfile",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/gradle/wrapper/gradle-wrapper.jar",
+    "destination": "native-assist/gradle/wrapper/gradle-wrapper.jar",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/gradle/wrapper/gradle-wrapper.properties",
+    "destination": "native-assist/gradle/wrapper/gradle-wrapper.properties",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/gradlew",
+    "destination": "native-assist/gradlew",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/gradlew.bat",
+    "destination": "native-assist/gradlew.bat",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/settings.gradle.kts",
+    "destination": "native-assist/settings.gradle.kts",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/agent/ApolloNativeAgent.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/agent/ApolloNativeAgent.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/agent/TargetRuntimeProbe.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/agent/TargetRuntimeProbe.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/attack/AttackBudget.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/attack/AttackBudget.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/attack/AttackKey.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/attack/AttackKey.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/attack/AttackLedger.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/attack/AttackLedger.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/attack/AttackToken.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/attack/AttackToken.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/attack/ConsumeResult.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/attack/ConsumeResult.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/attack/TargetGeneration.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/attack/TargetGeneration.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/attack/WeaponObservation.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/attack/WeaponObservation.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/bridge/ApolloNativeBridge.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/bridge/ApolloNativeBridge.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/bridge/BridgeConfiguration.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/bridge/BridgeConfiguration.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/bridge/BridgePublisher.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/bridge/BridgePublisher.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/bridge/BridgeStatus.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/bridge/BridgeStatus.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/gate/AssistState.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/gate/AssistState.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/gate/CompatibilityGate.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/gate/CompatibilityGate.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/gate/FingerprintLoader.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/gate/FingerprintLoader.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/gate/GateResult.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/gate/GateResult.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/gate/RuntimeFingerprint.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/gate/RuntimeFingerprint.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/geometry/CollisionProbe.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/geometry/CollisionProbe.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/geometry/CurrentHitRequest.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/geometry/CurrentHitRequest.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/geometry/DecisionCode.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/geometry/DecisionCode.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/geometry/HistoricalPose.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/geometry/HistoricalPose.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/geometry/RewindDecision.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/geometry/RewindDecision.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/geometry/RewindRequest.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/geometry/RewindRequest.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/geometry/RewindValidator.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/geometry/RewindValidator.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/geometry/Vec3.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/geometry/Vec3.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/geometry/WeaponProfile.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/geometry/WeaponProfile.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/geometry/ZombieCurrentHitValidator.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/geometry/ZombieCurrentHitValidator.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/history/EntityKey.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/history/EntityKey.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/history/EntityKind.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/history/EntityKind.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/history/HistoryStore.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/history/HistoryStore.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/history/HistoryTrack.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/history/HistoryTrack.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/history/NetworkEstimate.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/history/NetworkEstimate.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/history/NetworkQualityEstimator.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/history/NetworkQualityEstimator.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/history/RewindClock.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/history/RewindClock.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/history/RewindWindow.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/history/RewindWindow.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/history/StateSample.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/history/StateSample.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/hooks/AttackOpenAdvice.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/hooks/AttackOpenAdvice.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/hooks/ExactMemberBinding.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/hooks/ExactMemberBinding.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/hooks/ExactRuntimeBindingsFactory.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/hooks/ExactRuntimeBindingsFactory.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/hooks/ExactRuntimeBindingsSupport.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/hooks/ExactRuntimeBindingsSupport.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/hooks/HitGateAdvice.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/hooks/HitGateAdvice.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/hooks/HookDescriptor.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/hooks/HookDescriptor.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/hooks/HookInstaller.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/hooks/HookInstaller.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/hooks/NativeDecisionAdapter.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/hooks/NativeDecisionAdapter.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/hooks/PlayerStateObserver.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/hooks/PlayerStateObserver.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/hooks/ZombieStateObserver.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/hooks/ZombieStateObserver.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ConnectionNetworkRegistry.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ConnectionNetworkRegistry.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/runtime/DispatcherOrderProof.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/runtime/DispatcherOrderProof.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ExactAcceptedPacketAccess.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ExactAcceptedPacketAccess.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ExactHitPacketAccess.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ExactHitPacketAccess.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ExactLuaBridgePublication.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ExactLuaBridgePublication.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ExactRuntimeAdapterBindings.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ExactRuntimeAdapterBindings.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ExactWorldCollisionProbe.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ExactWorldCollisionProbe.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ExactZombieRuntimeAccess.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ExactZombieRuntimeAccess.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/runtime/PlayerIdentityRegistry.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/runtime/PlayerIdentityRegistry.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/runtime/RuntimeAccessorChains.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/runtime/RuntimeAccessorChains.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/runtime/RuntimeAdapterException.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/runtime/RuntimeAdapterException.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/runtime/RuntimeAdapterSpec.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/runtime/RuntimeAdapterSpec.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ServerMonotonicClock.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ServerMonotonicClock.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ZombieIdentityRegistry.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/runtime/ZombieIdentityRegistry.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/tools/ProductionFingerprintGenerator.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/tools/ProductionFingerprintGenerator.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/zombie/CombatBubble.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/zombie/CombatBubble.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/zombie/CombatBubbleIndex.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/zombie/CombatBubbleIndex.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/zombie/ZombieAuthorityEpochs.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/zombie/ZombieAuthorityEpochs.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/zombie/ZombieHandoffPolicy.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/zombie/ZombieHandoffPolicy.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/java/ru/apollot/pzsync/zombie/ZombieKeyframePolicy.java",
+    "destination": "native-assist/src/main/java/ru/apollot/pzsync/zombie/ZombieKeyframePolicy.java",
+    "kind": "file"
+  },
+  {
+    "source": "native-assist/src/main/resources/META-INF/MANIFEST.MF",
+    "destination": "native-assist/src/main/resources/META-INF/MANIFEST.MF",
+    "kind": "file"
+  },
+  {
+    "source": "package-lock.json",
+    "destination": "package-lock.json",
+    "kind": "file"
+  },
+  {
+    "source": "package.json",
+    "destination": "package.json",
+    "kind": "file"
+  },
+  {
+    "source": "public/docs/CLIENT_INSTALL_EN.md",
+    "destination": "public/docs/CLIENT_INSTALL_EN.md",
+    "kind": "file"
+  },
+  {
+    "source": "public/docs/CLIENT_INSTALL_RU.md",
+    "destination": "public/docs/CLIENT_INSTALL_RU.md",
+    "kind": "file"
+  },
+  {
+    "source": "public/docs/COMPATIBILITY.md",
+    "destination": "public/docs/COMPATIBILITY.md",
+    "kind": "file"
+  },
+  {
+    "source": "public/docs/NATIVE_ASSIST_EN.md",
+    "destination": "public/docs/NATIVE_ASSIST_EN.md",
+    "kind": "file"
+  },
+  {
+    "source": "public/docs/NATIVE_ASSIST_RU.md",
+    "destination": "public/docs/NATIVE_ASSIST_RU.md",
+    "kind": "file"
+  },
+  {
+    "source": "public/public-export.json",
+    "destination": "public/public-export.json",
+    "kind": "file"
+  },
+  {
+    "source": "public/release/release-manifest.json",
+    "destination": "public/release/release-manifest.json",
+    "kind": "file"
+  },
+  {
+    "source": "README.md",
+    "destination": "README.md",
+    "kind": "file"
+  },
+  {
+    "source": "scripts/build-manifest.mjs",
+    "destination": "scripts/build-manifest.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "scripts/build-public-export.mjs",
+    "destination": "scripts/build-public-export.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "scripts/check-lua.mjs",
+    "destination": "scripts/check-lua.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "scripts/check-package.mjs",
+    "destination": "scripts/check-package.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "scripts/check-release.mjs",
+    "destination": "scripts/check-release.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "scripts/fingerprint-properties.mjs",
+    "destination": "scripts/fingerprint-properties.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "scripts/package-utils.mjs",
+    "destination": "scripts/package-utils.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "scripts/stage-native-release.mjs",
+    "destination": "scripts/stage-native-release.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "scripts/verify-download.mjs",
+    "destination": "scripts/verify-download.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "scripts/verify-installer-repro.ps1",
+    "destination": "scripts/verify-installer-repro.ps1",
+    "kind": "file"
+  },
+  {
+    "source": "SHA256SUMS",
+    "destination": "SHA256SUMS",
+    "kind": "file"
+  },
+  {
+    "source": "tests/deploy/fixtures/compose.base.yaml",
+    "destination": "tests/deploy/fixtures/compose.base.yaml",
+    "kind": "file"
+  },
+  {
+    "source": "tests/deploy/test_deploy_contract.mjs",
+    "destination": "tests/deploy/test_deploy_contract.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "tests/deploy/test_exact_runtime_contract.mjs",
+    "destination": "tests/deploy/test_exact_runtime_contract.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "tests/fixtures/fingerprint/exact-fingerprint.properties",
+    "destination": "tests/fixtures/fingerprint/exact-fingerprint.properties",
+    "kind": "file"
+  },
+  {
+    "source": "tests/fixtures/fingerprint/hostile-member-suffixes.tsv",
+    "destination": "tests/fixtures/fingerprint/hostile-member-suffixes.tsv",
+    "kind": "file"
+  },
+  {
+    "source": "tests/fixtures/sandbox-options/checksum-assignment.txt",
+    "destination": "tests/fixtures/sandbox-options/checksum-assignment.txt",
+    "kind": "file"
+  },
+  {
+    "source": "tests/fixtures/sandbox-options/checksum-option.txt",
+    "destination": "tests/fixtures/sandbox-options/checksum-option.txt",
+    "kind": "file"
+  },
+  {
+    "source": "tests/fixtures/sandbox-options/duplicate-version.txt",
+    "destination": "tests/fixtures/sandbox-options/duplicate-version.txt",
+    "kind": "file"
+  },
+  {
+    "source": "tests/fixtures/sandbox-options/missing-version.txt",
+    "destination": "tests/fixtures/sandbox-options/missing-version.txt",
+    "kind": "file"
+  },
+  {
+    "source": "tests/fixtures/sandbox-options/version-inside-option-indented.txt",
+    "destination": "tests/fixtures/sandbox-options/version-inside-option-indented.txt",
+    "kind": "file"
+  },
+  {
+    "source": "tests/fixtures/sandbox-options/version-inside-option-unindented.txt",
+    "destination": "tests/fixtures/sandbox-options/version-inside-option-unindented.txt",
+    "kind": "file"
+  },
+  {
+    "source": "tests/fixtures/sandbox-options/wrong-version.txt",
+    "destination": "tests/fixtures/sandbox-options/wrong-version.txt",
+    "kind": "file"
+  },
+  {
+    "source": "tests/print_compatibility_adapters.lua",
+    "destination": "tests/print_compatibility_adapters.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/run.lua",
+    "destination": "tests/run.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/support/assertions.lua",
+    "destination": "tests/support/assertions.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/support/fake_pz.lua",
+    "destination": "tests/support/fake_pz.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_actions.lua",
+    "destination": "tests/test_actions.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_adapters.lua",
+    "destination": "tests/test_adapters.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_compatibility_adapters.mjs",
+    "destination": "tests/test_compatibility_adapters.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_config.lua",
+    "destination": "tests/test_config.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_fingerprint_identity.mjs",
+    "destination": "tests/test_fingerprint_identity.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_installer_scope.mjs",
+    "destination": "tests/test_installer_scope.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_native_bridge.lua",
+    "destination": "tests/test_native_bridge.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_native_only.lua",
+    "destination": "tests/test_native_only.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_package_tools.mjs",
+    "destination": "tests/test_package_tools.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_production_fingerprint.mjs",
+    "destination": "tests/test_production_fingerprint.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_protocol_core.lua",
+    "destination": "tests/test_protocol_core.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_public_docs.mjs",
+    "destination": "tests/test_public_docs.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_public_export.mjs",
+    "destination": "tests/test_public_export.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_public_workflow.mjs",
+    "destination": "tests/test_public_workflow.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_reconciliation.lua",
+    "destination": "tests/test_reconciliation.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_release_gates.mjs",
+    "destination": "tests/test_release_gates.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_runtime_round1.lua",
+    "destination": "tests/test_runtime_round1.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_runtime_round2.lua",
+    "destination": "tests/test_runtime_round2.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_runtime_round3.lua",
+    "destination": "tests/test_runtime_round3.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_runtime_round4.lua",
+    "destination": "tests/test_runtime_round4.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_runtime.lua",
+    "destination": "tests/test_runtime.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_sandbox_options.mjs",
+    "destination": "tests/test_sandbox_options.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_vehicles.lua",
+    "destination": "tests/test_vehicles.lua",
+    "kind": "file"
+  },
+  {
+    "source": "tests/test_workshop_description.mjs",
+    "destination": "tests/test_workshop_description.mjs",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/client/ApolloMPSync/ClientRuntime.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/client/ApolloMPSync/ClientRuntime.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/client/ApolloMPSync/NativeAssistClient.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/client/ApolloMPSync/NativeAssistClient.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/client/ApolloMPSync/RemoteRenderer.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/client/ApolloMPSync/RemoteRenderer.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/client/ApolloMPSync/StateSampler.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/client/ApolloMPSync/StateSampler.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/server/ApolloMPSync/NativeAssistServer.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/server/ApolloMPSync/NativeAssistServer.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/server/ApolloMPSync/ServerRuntime.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/server/ApolloMPSync/ServerRuntime.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/server/ApolloMPSync/ServerState.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/server/ApolloMPSync/ServerState.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/server/ApolloMPSync/VehicleRepair.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/server/ApolloMPSync/VehicleRepair.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/ActionPolicy.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/ActionPolicy.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/ActionRegistry.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/ActionRegistry.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/AdaptiveRate.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/AdaptiveRate.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/Config.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/Config.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/Protocol.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/Protocol.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/RateLimit.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/RateLimit.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/Reconciliation.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/Reconciliation.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/Sequence.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/Sequence.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/TrailerPolicy.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/TrailerPolicy.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/Validation.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/Validation.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/VehiclePolicy.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/VehiclePolicy.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/WorkBudget.lua",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/WorkBudget.lua",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/Translate/EN/IG_UI_EN.txt",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/Translate/EN/IG_UI_EN.txt",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/Translate/EN/Sandbox_EN.txt",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/Translate/EN/Sandbox_EN.txt",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/Translate/RU/IG_UI_RU.txt",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/Translate/RU/IG_UI_RU.txt",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/Translate/RU/Sandbox_RU.txt",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/Translate/RU/Sandbox_RU.txt",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/media/sandbox-options.txt",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/media/sandbox-options.txt",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/mod.info",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/mod.info",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/42/poster.png",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/42/poster.png",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/mod.info",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/mod.info",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/Contents/mods/ApolloMPSyncB42/poster.png",
+    "destination": "workshop/Contents/mods/ApolloMPSyncB42/poster.png",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/preview.png",
+    "destination": "workshop/preview.png",
+    "kind": "file"
+  },
+  {
+    "source": "workshop/workshop.txt",
+    "destination": "workshop/workshop.txt",
+    "kind": "file"
+  }
+]

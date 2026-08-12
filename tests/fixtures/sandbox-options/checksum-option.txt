@@ -1,0 +1,7 @@
+VERSION = 1,
+
+option ApolloMPSync.DoLuaChecksum
+{
+    type = boolean,
+    default = false,
+}

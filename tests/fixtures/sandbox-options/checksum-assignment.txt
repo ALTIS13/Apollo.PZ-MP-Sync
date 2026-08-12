@@ -1,0 +1,8 @@
+VERSION = 1,
+DoLuaChecksum = false,
+
+option ApolloMPSync.Enabled
+{
+    type = boolean,
+    default = true,
+}

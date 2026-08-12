@@ -1,0 +1,65 @@
+name: Publish tagged release
+
+on:
+  push:
+    tags:
+      - "v0.2.0"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    uses: ./.github/workflows/verify.yml
+    permissions:
+      contents: read
+
+  release:
+    name: Publish immutable release assets
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download verified Windows installer
+        uses: actions/download-artifact@v4
+        with:
+          name: setup-win-x64
+          path: release-assets
+
+      - name: Download verified Native Assist staging
+        uses: actions/download-artifact@v4
+        with:
+          name: native-assist-staging
+          path: native-release
+
+      - name: Create deterministic Native Assist archive and checksums
+        shell: bash
+        run: |
+          set -euo pipefail
+          setup="Apollo.PZ.MP.Sync.Setup-win-x64.exe"
+          archive="apollo-native-assist-0.2.0-pz42.20.2-linux-amd64.zip"
+          mv "release-assets/$setup" "$setup"
+          find "native-release" -type f -exec touch -d "1980-01-01T00:00:00Z" {} +
+          (
+            cd "native-release"
+            find . -type f -print | LC_ALL=C sort | zip -X "../$archive" -@
+          )
+          sha256sum "$setup" "$archive" > SHA256SUMS
+          sha256sum --check SHA256SUMS
+          test "$(find . -maxdepth 1 -type f -printf '%f\n' | LC_ALL=C sort | tr '\n' ' ')" = "Apollo.PZ.MP.Sync.Setup-win-x64.exe SHA256SUMS apollo-native-assist-0.2.0-pz42.20.2-linux-amd64.zip "
+
+      - name: Publish exactly three release assets
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release create "$GITHUB_REF_NAME" \
+            "Apollo.PZ.MP.Sync.Setup-win-x64.exe" \
+            "apollo-native-assist-0.2.0-pz42.20.2-linux-amd64.zip" \
+            "SHA256SUMS" \
+            --verify-tag \
+            --title "Apollo PZ MP Sync 0.2.0" \
+            --generate-notes

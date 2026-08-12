@@ -1,0 +1,4 @@
+IG_UI_RU = {
+    IGUI_ApolloMPSync_ObserverOnly = "Синхронизация семантических действий",
+    IGUI_ApolloMPSync_NativeAuthority = "Власть над движением остаётся нативной",
+}

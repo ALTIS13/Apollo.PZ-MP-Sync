@@ -1,0 +1,22 @@
+services:
+  project-zomboid:
+    image: busybox@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    entrypoint: ["/bin/bash", "/home/steam/run_server.sh"]
+    command: null
+    restart: unless-stopped
+    user: root
+    working_dir: /home/root
+    ports:
+      - "16261:16261/udp"
+    networks:
+      - default
+    healthcheck:
+      test: ["CMD", "true"]
+      interval: 30s
+    volumes:
+      - type: bind
+        source: /existing/config
+        target: /existing-config
+        read_only: false
+networks:
+  default: {}

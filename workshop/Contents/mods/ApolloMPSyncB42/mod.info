@@ -1,0 +1,10 @@
+name=Apollo MP Sync [B42.20.2]
+id=ApolloMPSyncB42
+description=Conservative multiplayer visual and transform reconciliation for Project Zomboid 42.20.2.
+poster=poster.png
+author=Apollo
+tags=Build 42, Multiplayer, QoL
+pzversion=42
+versionMin=42.20.2
+versionMax=42.20.2
+modversion=0.2.0

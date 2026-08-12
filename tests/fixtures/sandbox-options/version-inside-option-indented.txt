@@ -1,0 +1,8 @@
+VERSION = 1,
+
+option ApolloMPSync.Enabled
+{
+    VERSION = 1,
+    type = boolean,
+    default = true,
+}

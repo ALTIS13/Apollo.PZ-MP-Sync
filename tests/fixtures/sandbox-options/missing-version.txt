@@ -1,0 +1,5 @@
+option ApolloMPSync.Enabled
+{
+    type = boolean,
+    default = true,
+}

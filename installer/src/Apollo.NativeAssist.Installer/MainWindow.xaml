@@ -1,0 +1,138 @@
+<Window x:Class="Apollo.NativeAssist.Installer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:automation="clr-namespace:System.Windows.Automation;assembly=PresentationCore"
+        mc:Ignorable="d" Title="{DynamicResource AppTitle}" Width="920" Height="820"
+        MinWidth="760" MinHeight="620" WindowStartupLocation="CenterScreen">
+  <Window.Resources>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+    <Style TargetType="TextBox"><Setter Property="Margin" Value="0,3,0,9" /></Style>
+    <Style TargetType="PasswordBox"><Setter Property="Margin" Value="0,3,0,9" /></Style>
+    <Style TargetType="Button"><Setter Property="Padding" Value="14,7" /><Setter Property="Margin" Value="0,6,8,0" /></Style>
+  </Window.Resources>
+  <DockPanel Margin="22" KeyboardNavigation.TabNavigation="Continue">
+    <StackPanel DockPanel.Dock="Top">
+      <TextBlock Text="{DynamicResource AppTitle}" FontSize="26" FontWeight="SemiBold" />
+      <StackPanel Orientation="Horizontal" Margin="0,10,0,4">
+        <TextBlock Text="{DynamicResource ServerModeLabel}" FontWeight="SemiBold" Margin="0,0,8,0" />
+        <TextBlock x:Name="ServerModeText" Text="{DynamicResource ServerModeValue}" />
+      </StackPanel>
+      <TextBlock Text="{DynamicResource CoolifyNote}" TextWrapping="Wrap" Foreground="#5C5267" Margin="0,0,0,12" />
+      <Label Content="{DynamicResource LanguageLabel}" Target="{Binding ElementName=LanguageComboBox}" Padding="0" />
+      <ComboBox x:Name="LanguageComboBox" Width="180" HorizontalAlignment="Left" SelectedValue="{Binding Language, Mode=OneWay}"
+                SelectedValuePath="Tag" SelectionChanged="LanguageSelectionChanged"
+                automation:AutomationProperties.Name="{DynamicResource LanguageLabel}" TabIndex="0">
+        <ComboBoxItem Content="{DynamicResource EnglishLanguage}" Tag="en-US" />
+        <ComboBoxItem Content="{DynamicResource RussianLanguage}" Tag="ru-RU" />
+      </ComboBox>
+      <Separator Margin="0,14" />
+    </StackPanel>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+      <StackPanel>
+        <StackPanel x:Name="ConnectionPanel" IsEnabled="{Binding IsConnectionEditable}" Visibility="{Binding IsConnectionStep, Converter={StaticResource BooleanToVisibility}}">
+          <TextBlock Text="{DynamicResource ConnectionHeading}" FontSize="20" FontWeight="SemiBold" Margin="0,0,0,10" />
+          <Grid>
+            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="18"/><ColumnDefinition Width="180"/></Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+              <Label Content="{DynamicResource HostLabel}" Target="{Binding ElementName=HostTextBox}" Padding="0" />
+              <TextBox x:Name="HostTextBox" Text="{Binding Host, UpdateSourceTrigger=PropertyChanged}" automation:AutomationProperties.Name="{DynamicResource HostLabel}" TabIndex="1" />
+            </StackPanel>
+            <StackPanel Grid.Column="2">
+              <Label Content="{DynamicResource PortLabel}" Target="{Binding ElementName=PortTextBox}" Padding="0" />
+              <TextBox x:Name="PortTextBox" Text="{Binding Port, UpdateSourceTrigger=PropertyChanged}" automation:AutomationProperties.Name="{DynamicResource PortLabel}" TabIndex="2" />
+            </StackPanel>
+          </Grid>
+          <Label Content="{DynamicResource UsernameLabel}" Target="{Binding ElementName=UsernameTextBox}" Padding="0" />
+          <TextBox x:Name="UsernameTextBox" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" automation:AutomationProperties.Name="{DynamicResource UsernameLabel}" TabIndex="3" />
+          <Label Content="{DynamicResource AuthenticationLabel}" Target="{Binding ElementName=PrivateKeyRadio}" Padding="0" />
+          <StackPanel Orientation="Horizontal">
+            <RadioButton x:Name="PrivateKeyRadio" Content="{DynamicResource PrivateKeyMode}" IsChecked="{Binding IsPrivateKeyAuthentication, Mode=OneWay}"
+                         Checked="PrivateKeyChecked" automation:AutomationProperties.Name="{DynamicResource PrivateKeyMode}" Margin="0,3,20,9" TabIndex="4" />
+            <RadioButton x:Name="PasswordRadio" Content="{DynamicResource PasswordMode}" IsChecked="{Binding IsPasswordAuthentication, Mode=OneWay}"
+                         Checked="PasswordChecked" automation:AutomationProperties.Name="{DynamicResource PasswordMode}" Margin="0,3,0,9" TabIndex="5" />
+          </StackPanel>
+          <StackPanel Visibility="{Binding IsPrivateKeyAuthentication, Converter={StaticResource BooleanToVisibility}}">
+            <Label Content="{DynamicResource PrivateKeyPathLabel}" Target="{Binding ElementName=PrivateKeyPathTextBox}" Padding="0" />
+            <TextBox x:Name="PrivateKeyPathTextBox" Text="{Binding PrivateKeyPath, UpdateSourceTrigger=PropertyChanged}" automation:AutomationProperties.Name="{DynamicResource PrivateKeyPathLabel}" TabIndex="6" />
+            <Label Content="{DynamicResource PassphraseLabel}" Target="{Binding ElementName=PassphrasePasswordBox}" Padding="0" />
+            <PasswordBox x:Name="PassphrasePasswordBox" PasswordChanged="PassphraseChanged" automation:AutomationProperties.Name="{DynamicResource PassphraseLabel}" TabIndex="7" />
+          </StackPanel>
+          <StackPanel Visibility="{Binding IsPasswordAuthentication, Converter={StaticResource BooleanToVisibility}}">
+            <Label Content="{DynamicResource PasswordLabel}" Target="{Binding ElementName=PasswordBox}" Padding="0" />
+            <PasswordBox x:Name="PasswordBox" PasswordChanged="PasswordChanged" automation:AutomationProperties.Name="{DynamicResource PasswordLabel}" TabIndex="6" />
+          </StackPanel>
+          <Label Content="{DynamicResource DeploymentDirectoryLabel}" Target="{Binding ElementName=DeploymentDirectoryTextBox}" Padding="0" />
+          <TextBox x:Name="DeploymentDirectoryTextBox" Text="{Binding DeploymentDirectory, UpdateSourceTrigger=PropertyChanged}" automation:AutomationProperties.Name="{DynamicResource DeploymentDirectoryLabel}" TabIndex="8" />
+          <Label Content="{DynamicResource ComposeFilesLabel}" Target="{Binding ElementName=ComposeFilesItems}" Padding="0" />
+          <ItemsControl x:Name="ComposeFilesItems" ItemsSource="{Binding ComposeFiles}" automation:AutomationProperties.Name="{DynamicResource ComposeFilesLabel}" TabIndex="9">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <TextBox Text="{Binding Mode=OneWay}" LostKeyboardFocus="ComposeFileLostFocus" TabIndex="9"
+                         automation:AutomationProperties.Name="{DynamicResource ComposeFilesLabel}" />
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+          <StackPanel Orientation="Horizontal">
+            <Button x:Name="AddComposeFileButton" Content="{DynamicResource AddComposeFile}" Command="{Binding AddComposeFileCommand}" automation:AutomationProperties.Name="{DynamicResource AddComposeFile}" TabIndex="10" />
+            <Button x:Name="RemoveComposeFileButton" Content="{DynamicResource RemoveComposeFile}" Command="{Binding RemoveComposeFileCommand}" automation:AutomationProperties.Name="{DynamicResource RemoveComposeFile}" TabIndex="11" />
+          </StackPanel>
+          <Label Content="{DynamicResource ServiceNameLabel}" Target="{Binding ElementName=ServiceNameTextBox}" Padding="0" Margin="0,8,0,0" />
+          <TextBox x:Name="ServiceNameTextBox" Text="{Binding ServiceName, UpdateSourceTrigger=PropertyChanged}" automation:AutomationProperties.Name="{DynamicResource ServiceNameLabel}" TabIndex="12" />
+          <Button x:Name="CheckServerButton" Content="{DynamicResource CheckServer}" Command="{Binding CheckServerCommand}"
+                  IsDefault="False" HorizontalAlignment="Left" automation:AutomationProperties.Name="{DynamicResource CheckServer}" TabIndex="13" />
+        </StackPanel>
+
+        <StackPanel Visibility="{Binding IsHostKeyTrustStep, Converter={StaticResource BooleanToVisibility}}">
+          <TextBlock Text="{DynamicResource TrustHeading}" FontSize="20" FontWeight="SemiBold" />
+          <Label Content="{DynamicResource AlgorithmLabel}" Target="{Binding ElementName=HostKeyAlgorithmTextBox}" Padding="0" Margin="0,10,0,0" />
+          <TextBox x:Name="HostKeyAlgorithmTextBox" Text="{Binding HostKeyAlgorithm, Mode=OneWay}" IsReadOnly="True" automation:AutomationProperties.Name="{DynamicResource AlgorithmLabel}" />
+          <Label Content="{DynamicResource FingerprintLabel}" Target="{Binding ElementName=HostKeyFingerprintTextBox}" Padding="0" />
+          <TextBox x:Name="HostKeyFingerprintTextBox" Text="{Binding HostKeySha256, Mode=OneWay}" IsReadOnly="True" automation:AutomationProperties.Name="{DynamicResource FingerprintLabel}" />
+          <StackPanel Orientation="Horizontal">
+            <Button Content="{DynamicResource TrustAndContinue}" Command="{Binding TrustAndContinueCommand}" IsDefault="False" automation:AutomationProperties.Name="{DynamicResource TrustAndContinue}" />
+            <Button Content="{DynamicResource RejectHostKey}" Command="{Binding RejectHostKeyCommand}" IsDefault="False" automation:AutomationProperties.Name="{DynamicResource RejectHostKey}" />
+          </StackPanel>
+        </StackPanel>
+
+        <StackPanel Visibility="{Binding IsReviewStep, Converter={StaticResource BooleanToVisibility}}">
+          <TextBlock Text="{DynamicResource ReviewHeading}" FontSize="20" FontWeight="SemiBold" />
+          <TextBlock Text="{DynamicResource PlannedActionsLabel}" FontWeight="SemiBold" Margin="0,10,0,4" />
+          <ListView x:Name="PlannedActionsList" ItemsSource="{Binding PlannedActions}" MinHeight="100" automation:AutomationProperties.Name="{DynamicResource PlannedActionsLabel}">
+            <ListView.View><GridView><GridViewColumn Header="{DynamicResource ActionCodeHeader}" DisplayMemberBinding="{Binding Code}" Width="180"/><GridViewColumn Header="{DynamicResource ActionTargetHeader}" DisplayMemberBinding="{Binding Target}" Width="480"/></GridView></ListView.View>
+          </ListView>
+          <CheckBox Content="{DynamicResource RestartConfirmation}" IsChecked="{Binding ConfirmPlannedRestarts}"
+                    automation:AutomationProperties.Name="{DynamicResource RestartConfirmation}" Margin="0,12,0,4" TabIndex="20" />
+          <Button Content="{DynamicResource InstallOrUpdate}" Command="{Binding InstallCommand}" IsDefault="False" HorizontalAlignment="Left" automation:AutomationProperties.Name="{DynamicResource InstallOrUpdate}" TabIndex="21" />
+          <Button Content="{DynamicResource SafeDisable}" Command="{Binding SafeDisableCommand}" IsDefault="False" HorizontalAlignment="Left" automation:AutomationProperties.Name="{DynamicResource SafeDisable}" />
+          <Button Content="{DynamicResource FullRollback}" Command="{Binding FullRollbackCommand}" Visibility="{Binding ShowFullRollback, Converter={StaticResource BooleanToVisibility}}" IsDefault="False" HorizontalAlignment="Left" automation:AutomationProperties.Name="{DynamicResource FullRollback}" />
+        </StackPanel>
+
+        <StackPanel Visibility="{Binding IsProgressStep, Converter={StaticResource BooleanToVisibility}}">
+          <TextBlock Text="{DynamicResource ProgressHeading}" FontSize="20" FontWeight="SemiBold" />
+          <TextBlock Text="{DynamicResource ProgressText}" TextWrapping="Wrap" Margin="0,10" />
+          <ProgressBar IsIndeterminate="True" Height="8" Margin="0,4,0,10" />
+          <Button Content="{DynamicResource CancelOperation}" Command="{Binding CancelCommand}" IsDefault="False" HorizontalAlignment="Left" automation:AutomationProperties.Name="{DynamicResource CancelOperation}" />
+        </StackPanel>
+
+        <StackPanel Visibility="{Binding IsResultStep, Converter={StaticResource BooleanToVisibility}}">
+          <TextBlock Text="{DynamicResource ResultHeading}" FontSize="20" FontWeight="SemiBold" />
+          <StackPanel Orientation="Horizontal" Margin="0,10,0,4">
+            <Button Content="{DynamicResource SafeDisable}" Command="{Binding SafeDisableCommand}" Visibility="{Binding ShowSafeDisable, Converter={StaticResource BooleanToVisibility}}" IsDefault="False" automation:AutomationProperties.Name="{DynamicResource SafeDisable}" />
+            <Button Content="{DynamicResource FullRollback}" Command="{Binding FullRollbackCommand}" Visibility="{Binding ShowFullRollback, Converter={StaticResource BooleanToVisibility}}" IsDefault="False" automation:AutomationProperties.Name="{DynamicResource FullRollback}" />
+          </StackPanel>
+        </StackPanel>
+
+        <Separator Margin="0,16" />
+        <Label Content="{DynamicResource StatusLabel}" Target="{Binding ElementName=StatusTextBox}" Padding="0" />
+        <TextBox x:Name="StatusTextBox" Text="{Binding StatusCode, Mode=OneWay}" IsReadOnly="True" automation:AutomationProperties.Name="{DynamicResource StatusLabel}" />
+        <Label Content="{DynamicResource EventLogLabel}" Target="{Binding ElementName=EventLogTextBox}" Padding="0" />
+        <TextBox x:Name="EventLogTextBox" Text="{Binding VisibleLog, Mode=OneWay}" IsReadOnly="True" AcceptsReturn="True" TextWrapping="NoWrap"
+                 VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" MinHeight="130"
+                 automation:AutomationProperties.Name="{DynamicResource EventLogLabel}" />
+      </StackPanel>
+    </ScrollViewer>
+  </DockPanel>
+</Window>

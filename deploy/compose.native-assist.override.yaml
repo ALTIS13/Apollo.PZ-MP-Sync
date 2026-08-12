@@ -1,0 +1,65 @@
+services:
+  project-zomboid:
+    entrypoint:
+      - /usr/bin/env
+      - -u
+      - BASH_ENV
+      - -u
+      - ENV
+      - -u
+      - BASHOPTS
+      - -u
+      - SHELLOPTS
+      - -u
+      - BASH_FUNC_builtin%%
+      - /bin/bash
+      - --noprofile
+      - --norc
+      - /opt/apollo-native/apollo-native-entrypoint.sh
+      - "${APOLLO_ORIGINAL_ENTRYPOINT_COUNT:?set the exact captured ENTRYPOINT count}"
+      - "${APOLLO_ORIGINAL_ENTRYPOINT_0_PATH:?set captured ENTRYPOINT element 0}"
+      - "${APOLLO_ORIGINAL_ENTRYPOINT_1_PATH:?set captured ENTRYPOINT element 1}"
+    environment:
+      APOLLO_NATIVE_ASSIST: "${APOLLO_NATIVE_ASSIST:-off}"
+      APOLLO_RUNTIME_LOCK_MODE: "${APOLLO_RUNTIME_LOCK_MODE:-none-captured}"
+      APOLLO_SERVER_ROOT: "${APOLLO_SERVER_ROOT:?set the existing container server-tree path}"
+      APOLLO_SERVER_JAR_RELATIVE: "${APOLLO_SERVER_JAR_RELATIVE:?set projectzomboid.jar relative to APOLLO_SERVER_ROOT}"
+      APOLLO_FINGERPRINT_FILE_SHA256: "${APOLLO_FINGERPRINT_FILE_SHA256:?set the full fingerprint file SHA-256 transport check}"
+      APOLLO_BOOTSTRAP_ENV_PATH: "${APOLLO_BOOTSTRAP_ENV_PATH:?set the captured env executable path}"
+      APOLLO_BOOTSTRAP_ENV_KIND: "${APOLLO_BOOTSTRAP_ENV_KIND:?set the exact env executable kind}"
+      APOLLO_BOOTSTRAP_ENV_MODE: "${APOLLO_BOOTSTRAP_ENV_MODE:?set the exact env executable mode}"
+      APOLLO_BOOTSTRAP_ENV_SHA256: "${APOLLO_BOOTSTRAP_ENV_SHA256:?set the exact env executable SHA-256}"
+      APOLLO_BOOTSTRAP_BASH_PATH: "${APOLLO_BOOTSTRAP_BASH_PATH:?set the captured Bash path}"
+      APOLLO_BOOTSTRAP_BASH_KIND: "${APOLLO_BOOTSTRAP_BASH_KIND:?set the exact Bash kind}"
+      APOLLO_BOOTSTRAP_BASH_MODE: "${APOLLO_BOOTSTRAP_BASH_MODE:?set the exact Bash mode}"
+      APOLLO_BOOTSTRAP_BASH_SHA256: "${APOLLO_BOOTSTRAP_BASH_SHA256:?set the exact Bash SHA-256}"
+      APOLLO_ORIGINAL_ENTRYPOINT_COUNT: "${APOLLO_ORIGINAL_ENTRYPOINT_COUNT:?set exact captured ENTRYPOINT count}"
+      APOLLO_ORIGINAL_ENTRYPOINT_0_PATH: "${APOLLO_ORIGINAL_ENTRYPOINT_0_PATH:?set captured ENTRYPOINT element 0}"
+      APOLLO_ORIGINAL_ENTRYPOINT_0_KIND: "${APOLLO_ORIGINAL_ENTRYPOINT_0_KIND:?set exact element 0 kind}"
+      APOLLO_ORIGINAL_ENTRYPOINT_0_MODE: "${APOLLO_ORIGINAL_ENTRYPOINT_0_MODE:?set exact element 0 mode}"
+      APOLLO_ORIGINAL_ENTRYPOINT_0_SHA256: "${APOLLO_ORIGINAL_ENTRYPOINT_0_SHA256:?set exact element 0 SHA-256}"
+      APOLLO_ORIGINAL_ENTRYPOINT_1_PATH: "${APOLLO_ORIGINAL_ENTRYPOINT_1_PATH:?set captured ENTRYPOINT element 1}"
+      APOLLO_ORIGINAL_ENTRYPOINT_1_KIND: "${APOLLO_ORIGINAL_ENTRYPOINT_1_KIND:?set exact element 1 kind}"
+      APOLLO_ORIGINAL_ENTRYPOINT_1_MODE: "${APOLLO_ORIGINAL_ENTRYPOINT_1_MODE:?set exact element 1 mode}"
+      APOLLO_ORIGINAL_ENTRYPOINT_1_SHA256: "${APOLLO_ORIGINAL_ENTRYPOINT_1_SHA256:?set exact element 1 SHA-256}"
+    volumes:
+      - type: bind
+        source: "${APOLLO_NATIVE_HOST_DIR:?set the host companion directory}"
+        target: /opt/apollo-native
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: "${APOLLO_SERVER_HOST_DIR:?set the existing host server-tree directory}"
+        target: "${APOLLO_SERVER_ROOT:?set the existing container server-tree path}"
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: "${APOLLO_WORKSHOP_HOST_DIR:?set the existing host Workshop cache directory}"
+        target: "${APOLLO_SERVER_ROOT:?set the existing container server-tree path}/steamapps/workshop"
+        read_only: false
+        bind:
+          create_host_path: false
+    security_opt:
+      - no-new-privileges:true

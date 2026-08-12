@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "version": "0.2.0",
+  "support": {
+    "appId": "380870",
+    "buildId": "24574884",
+    "gameVersion": "42.20.2",
+    "javaFeature": 25,
+    "os": "linux",
+    "arch": "amd64"
+  },
+  "imageDigest": "sha256:5e3479ea2ef66a4f14686fd3abc3286cf31a82c0e37f737b4b5976ff37da9951",
+  "agentSha256": "ca42552aab0dd2021ff11e9b46b15d03fe48102aed6bddf28f3e183a32b2917f",
+  "fingerprint": {
+    "transportSha256": "8f2ebb37d000ff11c3ffefbf7c8a11a0c5c10c57c97695dcc4530888c7a6b54e",
+    "identitySha256": "076cd9ca705cffd3cf0b3e9bd793f716db4ff46e257da93f3f52207189e1753b"
+  },
+  "nativeManifestSha256": "86dcfd62671e7a8618c9bbba8433a82425b9c2e896a635c4f21aa70de17108ba",
+  "files": [
+    {
+      "path": "README_EN.md",
+      "sha256": "8859089598ad78e7acf5863e9390561707179115548c37b0de90b7ff65409e1e"
+    },
+    {
+      "path": "README_RU.md",
+      "sha256": "67d7506b9fb6c8f57c6d0d56a85704f6bdf9949e54fda9e0ffddcfcff646e04d"
+    },
+    {
+      "path": "companion/apollo-native-agent.jar",
+      "sha256": "ca42552aab0dd2021ff11e9b46b15d03fe48102aed6bddf28f3e183a32b2917f"
+    },
+    {
+      "path": "companion/apollo-native-entrypoint.sh",
+      "sha256": "3e13c58c73a13062302dd977947d224cedef44c6caafe878f72917ee1a022c9d"
+    },
+    {
+      "path": "companion/fingerprint.properties",
+      "sha256": "8f2ebb37d000ff11c3ffefbf7c8a11a0c5c10c57c97695dcc4530888c7a6b54e"
+    },
+    {
+      "path": "companion/native-libraries.sha256",
+      "sha256": "86dcfd62671e7a8618c9bbba8433a82425b9c2e896a635c4f21aa70de17108ba"
+    },
+    {
+      "path": "templates/apollo-native.env.example",
+      "sha256": "eec62d79850c4fe8c5eecc660cfa25d436144b2f30b5103cca12e17883f302fb"
+    },
+    {
+      "path": "templates/compose.native-assist.override.yaml",
+      "sha256": "d8bdb2092390a54ec2c64ea6ff9a64854786c3cce3df0daa84c2275f16bfcbdd"
+    }
+  ]
+}

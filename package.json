@@ -1,0 +1,25 @@
+{
+  "name": "apollo-mp-sync-b42",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "test": "node tests/test_sandbox_options.mjs && node tests/test_compatibility_adapters.mjs && fengari -e \"local ok,err=pcall(dofile,'tests/run.lua'); if not ok then io.stderr:write(tostring(err)..'\\n'); os.exit(1) end\" && node --test tests/test_package_tools.mjs tests/test_release_gates.mjs tests/test_fingerprint_identity.mjs tests/test_production_fingerprint.mjs tests/test_workshop_description.mjs tests/deploy/test_deploy_contract.mjs tests/deploy/test_exact_runtime_contract.mjs",
+    "test:deploy": "node --test tests/test_fingerprint_identity.mjs tests/deploy/test_deploy_contract.mjs tests/deploy/test_exact_runtime_contract.mjs",
+    "test:installer-scope": "node --test tests/test_installer_scope.mjs",
+    "test:public-docs": "node --test tests/test_public_docs.mjs",
+    "test:public-export": "node --test tests/test_public_export.mjs",
+    "test:public-workflow": "node --test tests/test_public_workflow.mjs",
+    "test:native-only": "fengari -e \"local ok,err=pcall(dofile,'tests/test_native_only.lua'); if not ok then io.stderr:write(tostring(err)..'\\n'); os.exit(1) end\"",
+    "check:lua": "node scripts/check-lua.mjs",
+    "check:package": "node scripts/check-package.mjs",
+    "manifest": "node scripts/build-manifest.mjs",
+    "build:public-export": "node scripts/build-public-export.mjs",
+    "stage:native-release": "node scripts/stage-native-release.mjs",
+    "check": "npm test && npm run check:lua && npm run check:package && npm run manifest",
+    "check:release": "npm run check && node scripts/check-package.mjs --release && node scripts/check-release.mjs"
+  },
+  "devDependencies": {
+    "fengari-node-cli": "0.1.0",
+    "luaparse": "0.3.1"
+  }
+}

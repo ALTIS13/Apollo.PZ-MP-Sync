@@ -1,0 +1,143 @@
+name: Verify public release source
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  source-and-java:
+    name: Node 24 and Java 25 verification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Set up Temurin Java 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: gradle
+
+      - name: Set up .NET 8 for materialized-source checks
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Install locked Node dependencies
+        run: npm clean-install
+
+      - name: Verify public documentation and exporter policy
+        run: |
+          npm run test:public-docs
+          npm run test:public-export
+          npm run test:public-workflow
+
+      - name: Run release source gates
+        run: npm run check:release
+
+      - name: Build and compare two clean Java agents
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "build/repro-a" "build/repro-b"
+          mkdir -p "build/repro-a/native-assist" "build/repro-b/native-assist"
+          cp -a "native-assist/." "build/repro-a/native-assist/"
+          cp -a "native-assist/." "build/repro-b/native-assist/"
+          rm -rf "build/repro-a/native-assist/.gradle" "build/repro-a/native-assist/build"
+          rm -rf "build/repro-b/native-assist/.gradle" "build/repro-b/native-assist/build"
+          chmod +x "build/repro-a/native-assist/gradlew" "build/repro-b/native-assist/gradlew"
+          "build/repro-a/native-assist/gradlew" -p "build/repro-a/native-assist" clean agentJar --no-daemon
+          "build/repro-b/native-assist/gradlew" -p "build/repro-b/native-assist" clean agentJar --no-daemon
+          jar_a="build/repro-a/native-assist/build/libs/apollo-native-assist-0.2.0-agent.jar"
+          jar_b="build/repro-b/native-assist/build/libs/apollo-native-assist-0.2.0-agent.jar"
+          cmp --silent "$jar_a" "$jar_b" || { echo "agent JAR reproducibility mismatch" >&2; exit 1; }
+          sha256sum "$jar_a" "$jar_b"
+
+      - name: Stage the verified Native Assist release
+        shell: bash
+        run: npm run stage:native-release -- --agent-jar "build/repro-a/native-assist/build/libs/apollo-native-assist-0.2.0-agent.jar"
+
+      - name: Build and compare two clean public exports
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run build:public-export
+          rm -rf "build/public-export-a"
+          cp -a "build/public-export" "build/public-export-a"
+          npm run build:public-export
+          cmp --silent "build/public-export-a/PUBLIC-SHA256SUMS" "build/public-export/PUBLIC-SHA256SUMS" || { echo "public export reproducibility mismatch" >&2; exit 1; }
+          diff --no-dereference --recursive --brief "build/public-export-a" "build/public-export"
+
+      - name: Upload verified Native Assist staging
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-assist-staging
+          path: build/native-release/staging
+          if-no-files-found: error
+          retention-days: 1
+
+  installer:
+    name: .NET 8 Windows installer verification
+    needs: source-and-java
+    runs-on: windows-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Set up Temurin Java 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+
+      - name: Set up .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Install locked Node dependencies
+        run: npm clean-install
+
+      - name: Download verified Native Assist staging
+        uses: actions/download-artifact@v4
+        with:
+          name: native-assist-staging
+          path: build/native-release/staging
+
+      - name: Test the installer solution
+        shell: pwsh
+        run: dotnet test installer/Apollo.NativeAssist.Installer.sln -c Release
+
+      - name: Publish and compare two clean single-file installers
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $nativeReleaseDir = (Resolve-Path -LiteralPath "build/native-release/staging").Path
+          ./scripts/verify-installer-repro.ps1 -NativeReleaseDir $nativeReleaseDir -OutputRoot "build/installer-repro"
+
+      - name: Upload verified Windows installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: setup-win-x64
+          path: build/installer-repro/release-assets/Apollo.PZ.MP.Sync.Setup-win-x64.exe
+          if-no-files-found: error
+          retention-days: 1

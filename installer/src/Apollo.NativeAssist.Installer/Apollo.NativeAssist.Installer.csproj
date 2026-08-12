@@ -1,0 +1,97 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <UsingTask TaskName="ValidateNativeReleaseFiles"
+             TaskFactory="RoslynCodeTaskFactory"
+             AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <Files ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System" />
+      <Using Namespace="System.IO" />
+      <Code Type="Fragment" Language="cs"><![CDATA[
+        foreach (var item in Files)
+        {
+            var path = item.GetMetadata("FullPath");
+            try
+            {
+                var info = new FileInfo(path);
+                info.Refresh();
+                var isLink = (info.Attributes & FileAttributes.ReparsePoint) != 0;
+                if (!info.Exists || isLink)
+                {
+                    Log.LogError($"Native Assist publish requires a regular non-link staged release file: {path}");
+                    continue;
+                }
+
+                using var stream = new FileStream(
+                    path,
+                    FileMode.Open,
+                    FileAccess.Read,
+                    FileShare.Read,
+                    1,
+                    FileOptions.RandomAccess);
+                if (!stream.CanSeek)
+                {
+                    Log.LogError($"Native Assist publish requires a regular non-link staged release file: {path}");
+                    continue;
+                }
+
+                _ = stream.Length;
+            }
+            catch (Exception error)
+            {
+                Log.LogError($"Native Assist publish requires a regular non-link staged release file: {path} ({error.Message})");
+            }
+        }
+      ]]></Code>
+    </Task>
+  </UsingTask>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <NativeReleaseDir>$([System.IO.Path]::GetFullPath('$(MSBuildProjectDirectory)\..\..\..\build\native-release\staging'))</NativeReleaseDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Apollo.NativeAssist.Installer.Core\Apollo.NativeAssist.Installer.Core.csproj" />
+    <ProjectReference Include="..\Apollo.NativeAssist.Installer.Infrastructure\Apollo.NativeAssist.Installer.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(_IsPublishing)' == 'true'">
+    <EmbeddedResource Include="$(NativeReleaseDir)\README_EN.md" LogicalName="Apollo.NativeAssist.Release.README_EN.md" />
+    <EmbeddedResource Include="$(NativeReleaseDir)\README_RU.md" LogicalName="Apollo.NativeAssist.Release.README_RU.md" />
+    <EmbeddedResource Include="$(NativeReleaseDir)\companion\apollo-native-agent.jar" LogicalName="Apollo.NativeAssist.Release.companion/apollo-native-agent.jar" />
+    <EmbeddedResource Include="$(NativeReleaseDir)\companion\apollo-native-entrypoint.sh" LogicalName="Apollo.NativeAssist.Release.companion/apollo-native-entrypoint.sh" />
+    <EmbeddedResource Include="$(NativeReleaseDir)\companion\fingerprint.properties" LogicalName="Apollo.NativeAssist.Release.companion/fingerprint.properties" />
+    <EmbeddedResource Include="$(NativeReleaseDir)\companion\native-libraries.sha256" LogicalName="Apollo.NativeAssist.Release.companion/native-libraries.sha256" />
+    <EmbeddedResource Include="$(NativeReleaseDir)\release-manifest.json" LogicalName="Apollo.NativeAssist.Release.release-manifest.json" />
+    <EmbeddedResource Include="$(NativeReleaseDir)\templates\apollo-native.env.example" LogicalName="Apollo.NativeAssist.Release.templates/apollo-native.env.example" />
+    <EmbeddedResource Include="$(NativeReleaseDir)\templates\compose.native-assist.override.yaml" LogicalName="Apollo.NativeAssist.Release.templates/compose.native-assist.override.yaml" />
+    <CoreCompileCache Include="@(EmbeddedResource->'%(Identity)|%(LogicalName)')" />
+  </ItemGroup>
+
+  <Target Name="PrepareNativeReleaseResources"
+          BeforeTargets="PrepareForBuild;PrepareForPublish"
+          Condition="'$(_IsPublishing)' == 'true'">
+    <ItemGroup>
+      <_NativeReleaseFile Include="$(NativeReleaseDir)\README_EN.md" />
+      <_NativeReleaseFile Include="$(NativeReleaseDir)\README_RU.md" />
+      <_NativeReleaseFile Include="$(NativeReleaseDir)\companion\apollo-native-agent.jar" />
+      <_NativeReleaseFile Include="$(NativeReleaseDir)\companion\apollo-native-entrypoint.sh" />
+      <_NativeReleaseFile Include="$(NativeReleaseDir)\companion\fingerprint.properties" />
+      <_NativeReleaseFile Include="$(NativeReleaseDir)\companion\native-libraries.sha256" />
+      <_NativeReleaseFile Include="$(NativeReleaseDir)\release-manifest.json" />
+      <_NativeReleaseFile Include="$(NativeReleaseDir)\templates\apollo-native.env.example" />
+      <_NativeReleaseFile Include="$(NativeReleaseDir)\templates\compose.native-assist.override.yaml" />
+    </ItemGroup>
+
+    <Error Condition="!Exists('%(_NativeReleaseFile.Identity)')"
+           Text="Native Assist publish requires the regular staged release file: %(_NativeReleaseFile.Identity)" />
+    <ValidateNativeReleaseFiles Files="@(_NativeReleaseFile)" />
+    <GetFileHash Files="@(_NativeReleaseFile)" Algorithm="SHA256" />
+  </Target>
+</Project>

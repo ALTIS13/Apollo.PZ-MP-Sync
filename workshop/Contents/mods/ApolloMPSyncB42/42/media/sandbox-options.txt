@@ -1,0 +1,28 @@
+VERSION = 1,
+
+option ApolloMPSync.Enabled { type = boolean, default = true, page = ApolloMPSync, translation = ApolloMPSync_Enabled, }
+option ApolloMPSync.PlayerSync { type = boolean, default = true, page = ApolloMPSync, translation = ApolloMPSync_PlayerSync, }
+option ApolloMPSync.ActionSync { type = boolean, default = true, page = ApolloMPSync, translation = ApolloMPSync_ActionSync, }
+option ApolloMPSync.SleepSync { type = boolean, default = true, page = ApolloMPSync, translation = ApolloMPSync_SleepSync, }
+option ApolloMPSync.ActionCategorySync { type = boolean, default = true, page = ApolloMPSync, translation = ApolloMPSync_ActionCategorySync, }
+option ApolloMPSync.ActionProgressIntervalMs { type = integer, min = 50, max = 5000, default = 500, page = ApolloMPSync, translation = ApolloMPSync_ActionProgressIntervalMs, }
+option ApolloMPSync.PostActionGraceMs { type = integer, min = 50, max = 5000, default = 1250, page = ApolloMPSync, translation = ApolloMPSync_PostActionGraceMs, }
+option ApolloMPSync.PlayerRadius { type = integer, min = 10, max = 500, default = 60, page = ApolloMPSync, translation = ApolloMPSync_PlayerRadius, }
+option ApolloMPSync.MovingIntervalMs { type = integer, min = 50, max = 5000, default = 200, page = ApolloMPSync, translation = ApolloMPSync_MovingIntervalMs, }
+option ApolloMPSync.IdleIntervalMs { type = integer, min = 50, max = 5000, default = 1000, page = ApolloMPSync, translation = ApolloMPSync_IdleIntervalMs, }
+option ApolloMPSync.VehicleTransformSync { type = boolean, default = true, page = ApolloMPSync, translation = ApolloMPSync_VehicleTransformSync, }
+option ApolloMPSync.VehicleVisualPartSync { type = boolean, default = true, page = ApolloMPSync, translation = ApolloMPSync_VehicleVisualPartSync, }
+option ApolloMPSync.VehicleRadius { type = integer, min = 10, max = 500, default = 300, page = ApolloMPSync, translation = ApolloMPSync_VehicleRadius, }
+option ApolloMPSync.VehicleIntervalMinMs { type = integer, min = 50, max = 5000, default = 100, page = ApolloMPSync, translation = ApolloMPSync_VehicleIntervalMinMs, }
+option ApolloMPSync.VehicleIntervalMaxMs { type = integer, min = 50, max = 5000, default = 250, page = ApolloMPSync, translation = ApolloMPSync_VehicleIntervalMaxMs, }
+option ApolloMPSync.VehicleRepairIntervalSeconds { type = integer, min = 1, max = 60, default = 5, page = ApolloMPSync, translation = ApolloMPSync_VehicleRepairIntervalSeconds, }
+option ApolloMPSync.TrailerSync { type = boolean, default = true, page = ApolloMPSync, translation = ApolloMPSync_TrailerSync, }
+option ApolloMPSync.DebugLogging { type = boolean, default = false, page = ApolloMPSync, translation = ApolloMPSync_DebugLogging, }
+option ApolloMPSync.NativeAssistEnabled { type = boolean, default = true, page = ApolloMPSync, translation = ApolloMPSync_NativeAssistEnabled, }
+option ApolloMPSync.ServerRewindEnabled { type = boolean, default = true, page = ApolloMPSync, translation = ApolloMPSync_ServerRewindEnabled, }
+option ApolloMPSync.PvPRewind { type = boolean, default = true, page = ApolloMPSync, translation = ApolloMPSync_PvPRewind, }
+option ApolloMPSync.PvERewind { type = boolean, default = true, page = ApolloMPSync, translation = ApolloMPSync_PvERewind, }
+option ApolloMPSync.PlayerNativeAssist { type = boolean, default = true, page = ApolloMPSync, translation = ApolloMPSync_PlayerNativeAssist, }
+option ApolloMPSync.ZombieCombatBubble { type = boolean, default = true, page = ApolloMPSync, translation = ApolloMPSync_ZombieCombatBubble, }
+option ApolloMPSync.VehicleNativeAssist { type = boolean, default = true, page = ApolloMPSync, translation = ApolloMPSync_VehicleNativeAssist, }
+option ApolloMPSync.MaxRewindMs { type = integer, min = 0, max = 150, default = 150, page = ApolloMPSync, translation = ApolloMPSync_MaxRewindMs, }
