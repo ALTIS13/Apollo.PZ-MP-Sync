@@ -169,7 +169,10 @@ test("verification workflow is read-only and pins the required toolchain and det
     "npm run test:public-export",
     "npm run check:release",
     "npm run stage:native-release",
-    "dotnet test installer/Apollo.NativeAssist.Installer.sln -c Release",
+    "dotnet build installer/Apollo.NativeAssist.Installer.sln -c Release",
+    "dotnet test installer/tests/Apollo.NativeAssist.Installer.Core.Tests/Apollo.NativeAssist.Installer.Core.Tests.csproj -c Release --no-build --blame-hang-timeout 2m",
+    "dotnet test installer/tests/Apollo.NativeAssist.Installer.Infrastructure.Tests/Apollo.NativeAssist.Installer.Infrastructure.Tests.csproj -c Release --no-build --blame-hang-timeout 2m",
+    "dotnet test installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/Apollo.NativeAssist.Installer.Ui.Tests.csproj -c Release --no-build --blame-hang-timeout 2m",
     "--self-contained true",
     "-p:PublishSingleFile=true",
     "-p:PublishTrimmed=false",
@@ -185,6 +188,8 @@ test("verification workflow is read-only and pins the required toolchain and det
   assert.doesNotMatch(installerRepro, /Copy-Item[^\n]*installer[^\n]*-Recurse/iu);
   assert.match(workflow, /agent JAR reproducibility mismatch|cmp .*agent/iu);
   assert.match(workflow, /public export reproducibility mismatch|cmp .*PUBLIC-SHA256SUMS/iu);
+  assert.match(workflow, /installer:[\s\S]*?timeout-minutes:\s*20/iu);
+  assert.doesNotMatch(workflow, /dotnet test installer\/Apollo\.NativeAssist\.Installer\.sln/iu);
   assert.doesNotMatch(workflow, /steamcmd|workshop.*upload|gh release|coolify|curl\s+.*(?:https?|ssh)|Invoke-WebRequest/iu);
 });
 
