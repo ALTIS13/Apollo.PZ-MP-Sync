@@ -220,6 +220,11 @@
     "kind": "file"
   },
   {
+    "source": "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/AssemblyInfo.cs",
+    "destination": "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/AssemblyInfo.cs",
+    "kind": "file"
+  },
+  {
     "source": "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/EmbeddedReleaseLoaderTests.cs",
     "destination": "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/EmbeddedReleaseLoaderTests.cs",
     "kind": "file"

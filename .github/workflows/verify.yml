@@ -93,6 +93,7 @@ jobs:
     name: .NET 8 Windows installer verification
     needs: source-and-java
     runs-on: windows-latest
+    timeout-minutes: 20
     steps:
       - name: Check out source
         uses: actions/checkout@v4
@@ -123,9 +124,17 @@ jobs:
           name: native-assist-staging
           path: build/native-release/staging
 
-      - name: Test the installer solution
+      - name: Test the installer projects sequentially with hang bounds
         shell: pwsh
-        run: dotnet test installer/Apollo.NativeAssist.Installer.sln -c Release
+        run: |
+          dotnet build installer/Apollo.NativeAssist.Installer.sln -c Release
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          dotnet test installer/tests/Apollo.NativeAssist.Installer.Core.Tests/Apollo.NativeAssist.Installer.Core.Tests.csproj -c Release --no-build --blame-hang-timeout 2m
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          dotnet test installer/tests/Apollo.NativeAssist.Installer.Infrastructure.Tests/Apollo.NativeAssist.Installer.Infrastructure.Tests.csproj -c Release --no-build --blame-hang-timeout 2m
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          dotnet test installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/Apollo.NativeAssist.Installer.Ui.Tests.csproj -c Release --no-build --blame-hang-timeout 2m
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
       - name: Publish and compare two clean single-file installers
         shell: pwsh

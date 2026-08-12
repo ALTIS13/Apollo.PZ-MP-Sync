@@ -880,6 +880,26 @@ public sealed class MainWindowViewModelTests
     }
 
     [Fact]
+    public void Wpf_test_host_reuses_one_application_dispatcher_across_invocations()
+    {
+        System.Windows.Application? firstApplication = null;
+        Dispatcher? firstDispatcher = null;
+
+        RunOnSta(() =>
+        {
+            firstApplication = System.Windows.Application.Current ?? new System.Windows.Application();
+            firstApplication.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+            firstDispatcher = Dispatcher.CurrentDispatcher;
+        });
+
+        RunOnSta(() =>
+        {
+            Assert.Same(firstApplication, System.Windows.Application.Current);
+            Assert.Same(firstDispatcher, Dispatcher.CurrentDispatcher);
+        });
+    }
+
+    [Fact]
     public void Planned_action_headers_switch_between_localized_resource_values()
     {
         RunOnSta(() =>
@@ -1000,46 +1020,47 @@ public sealed class MainWindowViewModelTests
 
     private static void RunOnSta(Action action)
     {
-        Exception? error = null;
-        var thread = new Thread(() =>
+        try
         {
-            try { action(); }
-            catch (Exception exception) { error = exception; }
-        });
-        thread.SetApartmentState(ApartmentState.STA);
-        thread.Start();
-        thread.Join();
-        if (error is not null) throw new AggregateException(error);
+            WpfTestDispatcher.Value.GetAwaiter().GetResult().Invoke(action);
+        }
+        catch (Exception exception)
+        {
+            throw new AggregateException(exception);
+        }
     }
 
     private static Task RunOnStaAsync(Func<Task> action)
     {
-        var completion = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var dispatcher = WpfTestDispatcher.Value.GetAwaiter().GetResult();
+        return dispatcher.InvokeAsync(action).Task.Unwrap();
+    }
+
+    private static readonly Lazy<Task<Dispatcher>> WpfTestDispatcher = new(StartWpfTestDispatcher);
+
+    private static Task<Dispatcher> StartWpfTestDispatcher()
+    {
+        var ready = new TaskCompletionSource<Dispatcher>(TaskCreationOptions.RunContinuationsAsynchronously);
         var thread = new Thread(() =>
         {
-            var dispatcher = Dispatcher.CurrentDispatcher;
-            SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(dispatcher));
-            dispatcher.BeginInvoke(async () =>
+            try
             {
-                try
-                {
-                    await action();
-                    completion.TrySetResult();
-                }
-                catch (Exception exception)
-                {
-                    completion.TrySetException(exception);
-                }
-                finally
-                {
-                    dispatcher.BeginInvokeShutdown(DispatcherPriority.Background);
-                }
-            });
-            Dispatcher.Run();
+                var dispatcher = Dispatcher.CurrentDispatcher;
+                SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(dispatcher));
+                var application = System.Windows.Application.Current ?? new System.Windows.Application();
+                application.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+                ready.TrySetResult(dispatcher);
+                Dispatcher.Run();
+            }
+            catch (Exception exception)
+            {
+                ready.TrySetException(exception);
+            }
         });
+        thread.IsBackground = true;
         thread.SetApartmentState(ApartmentState.STA);
         thread.Start();
-        return completion.Task;
+        return ready.Task;
     }
 
     private static MainWindowViewModel Create(FakeWorkflow? workflow = null, Action<string>? languageSwitcher = null)

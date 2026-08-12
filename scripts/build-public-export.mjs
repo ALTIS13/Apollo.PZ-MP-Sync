@@ -95,6 +95,7 @@ const APPROVED_SOURCES = new Set([
   "installer/tests/Apollo.NativeAssist.Installer.Infrastructure.Tests/SshHostKeyProbeTests.cs",
   "installer/tests/Apollo.NativeAssist.Installer.Infrastructure.Tests/SshRemoteSessionTests.cs",
   "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/Apollo.NativeAssist.Installer.Ui.Tests.csproj",
+  "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/AssemblyInfo.cs",
   "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/EmbeddedReleaseLoaderTests.cs",
   "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/InstallerSessionTests.cs",
   "installer/tests/Apollo.NativeAssist.Installer.Ui.Tests/MainWindowViewModelTests.cs",
