@@ -14,7 +14,7 @@ namespace Apollo.NativeAssist.Installer.Ui.Tests;
 
 public sealed class EmbeddedReleaseLoaderTests
 {
-    private const string AgentSha256 = "ca42552aab0dd2021ff11e9b46b15d03fe48102aed6bddf28f3e183a32b2917f";
+    private const string AgentSha256 = "7166d8ecfa11e8a2737f528b5abe2d561c474a450f737f36add86bda343bf69a";
     private const string NativeManifestSha256 = "86dcfd62671e7a8618c9bbba8433a82425b9c2e896a635c4f21aa70de17108ba";
     private const string ImageDigest = "sha256:5e3479ea2ef66a4f14686fd3abc3286cf31a82c0e37f737b4b5976ff37da9951";
 
@@ -25,7 +25,7 @@ public sealed class EmbeddedReleaseLoaderTests
     {
         var release = EmbeddedReleaseLoader.Load(new DictionaryReleaseSource(ExactFiles));
 
-        Assert.Equal("0.2.0", release.Version);
+        Assert.Equal("0.2.1", release.Version);
         Assert.Equal("24574884", release.Manifest.Runtime.BuildId);
         Assert.Equal(ImageDigest, release.Manifest.Runtime.ImageDigest);
         Assert.Equal(AgentSha256, release.Bundle.Files["apollo-native-agent.jar"].Sha256);
@@ -397,7 +397,7 @@ public sealed class EmbeddedReleaseLoaderTests
     public void Coordinated_manifest_version_change_is_rejected()
     {
         var files = CloneExactFiles();
-        UpdateManifest(files, root => root["version"] = "0.2.1");
+        UpdateManifest(files, root => root["version"] = "0.2.2");
 
         Assert.Throws<InvalidDataException>(() => Load(files));
     }

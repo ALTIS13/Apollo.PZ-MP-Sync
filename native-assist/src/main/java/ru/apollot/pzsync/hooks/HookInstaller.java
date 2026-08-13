@@ -451,9 +451,9 @@ public final class HookInstaller implements BridgePublisher.Control {
         }
     }
 
-    public static boolean hitEnter(Object receiver, Object[] arguments) {
+    public static void hitEnter(Object receiver, Object[] arguments) {
         HookInstaller active = ACTIVE.get();
-        return active != null && active.rejectHit(receiver, arguments);
+        if (active != null) active.observeHitDecision(receiver, arguments);
     }
 
     public static Object zombieStateEnter(Object receiver, Object[] arguments) {
@@ -565,18 +565,17 @@ public final class HookInstaller implements BridgePublisher.Control {
         }
     }
 
-    private boolean rejectHit(Object receiver, Object[] arguments) {
+    private void observeHitDecision(Object receiver, Object[] arguments) {
         if (!readyForAdvice(false)) {
-            return false;
+            return;
         }
         try {
-            return !adapter.allowHit(receiver, arguments);
+            adapter.allowHit(receiver, arguments);
         } catch (VirtualMachineError fatal) {
             throw fatal;
         } catch (Throwable error) {
             rethrowFatalCause(error);
             recordAdviceError(AdviceCategory.HIT_GATE);
-            return false;
         }
     }
 

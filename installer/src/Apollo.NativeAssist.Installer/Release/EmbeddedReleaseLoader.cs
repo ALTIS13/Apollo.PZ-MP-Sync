@@ -23,8 +23,8 @@ public static class EmbeddedReleaseLoader
     private const int MaximumJarEntries = 10_000;
     private const long MaximumExpandedJarEntryBytes = 4L * 1024 * 1024;
     private const long MaximumExpandedJarBytes = 32L * 1024 * 1024;
-    private const string ExpectedManifestSha256 = "30fb803a73430ada6297fbcce3328860267202236cd2834197cf7e6056b76b41";
-    private const string ExpectedVersion = "0.2.0";
+    private const string ExpectedManifestSha256 = "5d0cb459fa39d1e05c9e23b14703f26c6166ca3bdb43dd2aa7676c9602d9a2db";
+    private const string ExpectedVersion = "0.2.1";
     private const string ExpectedAppId = "380870";
     private const string ExpectedBuildId = "24574884";
     private const string ExpectedGameVersion = "42.20.2";

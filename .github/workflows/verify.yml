@@ -61,14 +61,14 @@ jobs:
           chmod +x "build/repro-a/native-assist/gradlew" "build/repro-b/native-assist/gradlew"
           "build/repro-a/native-assist/gradlew" -p "build/repro-a/native-assist" clean agentJar --no-daemon
           "build/repro-b/native-assist/gradlew" -p "build/repro-b/native-assist" clean agentJar --no-daemon
-          jar_a="build/repro-a/native-assist/build/libs/apollo-native-assist-0.2.0-agent.jar"
-          jar_b="build/repro-b/native-assist/build/libs/apollo-native-assist-0.2.0-agent.jar"
+          jar_a="build/repro-a/native-assist/build/libs/apollo-native-assist-0.2.1-agent.jar"
+          jar_b="build/repro-b/native-assist/build/libs/apollo-native-assist-0.2.1-agent.jar"
           cmp --silent "$jar_a" "$jar_b" || { echo "agent JAR reproducibility mismatch" >&2; exit 1; }
           sha256sum "$jar_a" "$jar_b"
 
       - name: Stage the verified Native Assist release
         shell: bash
-        run: npm run stage:native-release -- --agent-jar "build/repro-a/native-assist/build/libs/apollo-native-assist-0.2.0-agent.jar"
+        run: npm run stage:native-release -- --agent-jar "build/repro-a/native-assist/build/libs/apollo-native-assist-0.2.1-agent.jar"
 
       - name: Build and compare two clean public exports
         shell: bash

@@ -4,7 +4,8 @@ import path from "node:path";
 import { parseFingerprintProperties } from "./fingerprint-properties.mjs";
 import { walkFiles, walkTree } from "./package-utils.mjs";
 
-const RELEASE_VERSION = "0.2.0";
+const WORKSHOP_VERSION = "0.2.0";
+const NATIVE_ASSIST_VERSION = "0.2.1";
 const EXACT = Object.freeze({
   appId: "380870",
   buildId: "24574884",
@@ -19,9 +20,9 @@ const EXACT = Object.freeze({
 const HASH = /^[0-9a-f]{64}$/;
 const PRODUCTION_SERVER_JAR_SHA256 = "09a80a46e4febe9b436c0f4ec539bdfe9e9113b673eeaf8db22415ac34bef416";
 const PRODUCTION_NATIVE_MANIFEST_SHA256 = "86dcfd62671e7a8618c9bbba8433a82425b9c2e896a635c4f21aa70de17108ba";
-const PRODUCTION_AGENT_SHA256 = "ca42552aab0dd2021ff11e9b46b15d03fe48102aed6bddf28f3e183a32b2917f";
-const PRODUCTION_FINGERPRINT_IDENTITY = "076cd9ca705cffd3cf0b3e9bd793f716db4ff46e257da93f3f52207189e1753b";
-const PRODUCTION_FINGERPRINT_TRANSPORT_SHA256 = "8f2ebb37d000ff11c3ffefbf7c8a11a0c5c10c57c97695dcc4530888c7a6b54e";
+const PRODUCTION_AGENT_SHA256 = "7166d8ecfa11e8a2737f528b5abe2d561c474a450f737f36add86bda343bf69a";
+const PRODUCTION_FINGERPRINT_IDENTITY = "0385b3d71e99ba23706f31e46f35b67993949e1e78e078e903a8445574f3794d";
+const PRODUCTION_FINGERPRINT_TRANSPORT_SHA256 = "3d765d2f91b409960391769314bfa62da034c1766ad69e16e3bbc6afdeb49118";
 const PRODUCTION_IMAGE_REFERENCE = "ghcr.io/renegade-master/zomboid-dedicated-server@sha256:5e3479ea2ef66a4f14686fd3abc3286cf31a82c0e37f737b4b5976ff37da9951";
 const PRODUCTION_ENTRYPOINT = Object.freeze([
   Object.freeze({
@@ -143,13 +144,13 @@ function requireEqual(label, observed, expected) {
 async function checkVersionTuple() {
   const packageJson = JSON.parse(await text("package.json"));
   const lock = JSON.parse(await text("package-lock.json"));
-  requireEqual("package version", packageJson.version, RELEASE_VERSION);
-  requireEqual("package-lock version", lock.version, RELEASE_VERSION);
-  requireEqual("package-lock root version", lock.packages?.[""]?.version, RELEASE_VERSION);
+  requireEqual("package version", packageJson.version, WORKSHOP_VERSION);
+  requireEqual("package-lock version", lock.version, WORKSHOP_VERSION);
+  requireEqual("package-lock root version", lock.packages?.[""]?.version, WORKSHOP_VERSION);
 
   for (const relativePath of MOD_INFO_PATHS) {
     const contents = await text(relativePath);
-    requireEqual(`${relativePath} modversion`, metadataValue(contents, "modversion"), RELEASE_VERSION);
+    requireEqual(`${relativePath} modversion`, metadataValue(contents, "modversion"), WORKSHOP_VERSION);
     requireEqual(`${relativePath} id`, metadataValue(contents, "id"), EXACT.luaModId);
     requireEqual(`${relativePath} versionMin`, metadataValue(contents, "versionMin"), EXACT.gameVersionRevision);
     requireEqual(`${relativePath} versionMax`, metadataValue(contents, "versionMax"), EXACT.gameVersionRevision);
@@ -157,7 +158,7 @@ async function checkVersionTuple() {
 
   const build = await text("native-assist/build.gradle.kts");
   const buildVersion = build.match(/\bversion\s*=\s*["']([^"']+)["']/)?.[1];
-  requireEqual("native agent version", buildVersion, RELEASE_VERSION);
+  requireEqual("native agent version", buildVersion, NATIVE_ASSIST_VERSION);
 
   const protocol = await text("workshop/Contents/mods/ApolloMPSyncB42/42/media/lua/shared/ApolloMPSync/Protocol.lua");
   requireEqual("Lua Workshop ID", sourceConstant(protocol, "WORKSHOP_ID"), EXACT.workshopId);

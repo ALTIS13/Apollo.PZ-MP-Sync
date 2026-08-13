@@ -2,7 +2,7 @@
 
 ## Supported scope
 
-Apollo MP Sync `0.2.0` supports Project Zomboid `42.20.2`. The Workshop component is [item `3780069702`](https://steamcommunity.com/sharedfiles/filedetails/?id=3780069702) with Mod ID `ApolloMPSyncB42`.
+Apollo MP Sync supports Project Zomboid `42.20.2`. The client Workshop component remains at `0.2.0`; the optional server-side Native Assist release is `0.2.1`. The Workshop component is [item `3780069702`](https://steamcommunity.com/sharedfiles/filedetails/?id=3780069702) with Mod ID `ApolloMPSyncB42`, and clients do not need an update for Native Assist `0.2.1`.
 
 Native Assist is optional and supports exactly this server tuple:
 

@@ -69,7 +69,7 @@ async function fixture() {
     "return Protocol",
     "",
   ].join("\n"));
-  await put(root, "native-assist/build.gradle.kts", "version = \"0.2.0\"\n");
+  await put(root, "native-assist/build.gradle.kts", "version = \"0.2.1\"\n");
   await put(root, "native-assist/src/main/java/ru/apollot/pzsync/gate/CompatibilityGate.java", [
     "final class CompatibilityGate {",
     "  static final String APP_ID = \"380870\";",
@@ -193,7 +193,7 @@ async function expectRejected(mutate, diagnostic, args = []) {
   }
 }
 
-test("release gate accepts an exact Workshop-only 0.2.0 fixture", async () => {
+test("release gate keeps Workshop 0.2.0 while accepting Native Assist 0.2.1", async () => {
   const root = await fixture();
   try {
     const result = run(root);
@@ -605,7 +605,7 @@ test("native release gate rejects a JSON fingerprint dialect", async () => {
 test("release gate rejects a mismatched version tuple", async () => {
   await expectRejected(
     (root) => put(root, "native-assist/build.gradle.kts", "version = \"0.1.1\"\n"),
-    /native agent version mismatch.*expected 0\.2\.0/i,
+    /native agent version mismatch.*expected 0\.2\.1/i,
   );
 });
 

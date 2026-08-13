@@ -110,7 +110,7 @@ test("materialized public source executes its documented verification prerequisi
     "org.gradle.wrapper.GradleWrapperMain",
     "-p", "native-assist", "clean", "agentJar", "--no-daemon",
   ], publicRoot);
-  const agentJar = "native-assist/build/libs/apollo-native-assist-0.2.0-agent.jar";
+  const agentJar = "native-assist/build/libs/apollo-native-assist-0.2.1-agent.jar";
   await runNpm(["run", "stage:native-release", "--", "--agent-jar", agentJar], publicRoot);
   await run("dotnet", ["sln", "installer/Apollo.NativeAssist.Installer.sln", "list"], publicRoot);
 

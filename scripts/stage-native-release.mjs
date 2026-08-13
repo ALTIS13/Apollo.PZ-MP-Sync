@@ -22,7 +22,7 @@ const PRODUCTION_NATIVE_MANIFEST =
 const HASH = /^[0-9a-f]{64}$/;
 const EXPECTED_METADATA = Object.freeze({
   schemaVersion: 1,
-  version: "0.2.0",
+  version: "0.2.1",
   support: Object.freeze({
     appId: "380870",
     buildId: "24574884",
@@ -32,10 +32,10 @@ const EXPECTED_METADATA = Object.freeze({
     arch: "amd64",
   }),
   imageDigest: "sha256:5e3479ea2ef66a4f14686fd3abc3286cf31a82c0e37f737b4b5976ff37da9951",
-  agentSha256: "ca42552aab0dd2021ff11e9b46b15d03fe48102aed6bddf28f3e183a32b2917f",
+  agentSha256: "7166d8ecfa11e8a2737f528b5abe2d561c474a450f737f36add86bda343bf69a",
   fingerprint: Object.freeze({
-    transportSha256: "8f2ebb37d000ff11c3ffefbf7c8a11a0c5c10c57c97695dcc4530888c7a6b54e",
-    identitySha256: "076cd9ca705cffd3cf0b3e9bd793f716db4ff46e257da93f3f52207189e1753b",
+    transportSha256: "3d765d2f91b409960391769314bfa62da034c1766ad69e16e3bbc6afdeb49118",
+    identitySha256: "0385b3d71e99ba23706f31e46f35b67993949e1e78e078e903a8445574f3794d",
   }),
   nativeManifestSha256: "86dcfd62671e7a8618c9bbba8433a82425b9c2e896a635c4f21aa70de17108ba",
 });
@@ -526,7 +526,7 @@ async function main() {
     agentJar: path.resolve(projectRoot, agentJar),
     outputRoot: path.join(projectRoot, "build/native-release"),
   });
-  console.log("PASS staged Native Assist 0.2.0 (9 exact files)");
+  console.log("PASS staged Native Assist 0.2.1 (9 exact files)");
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

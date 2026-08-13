@@ -39,7 +39,7 @@ import ru.apollot.pzsync.gate.RuntimeFingerprint.EntrypointElement;
 import ru.apollot.pzsync.runtime.RuntimeAdapterSpec;
 
 /**
- * Deterministically emits the one production fingerprint supported by Native Assist 0.2.0.
+ * Deterministically emits the one production fingerprint supported by Native Assist 0.2.1.
  * It reads class entries directly and never loads or initializes Project Zomboid classes.
  */
 public final class ProductionFingerprintGenerator {

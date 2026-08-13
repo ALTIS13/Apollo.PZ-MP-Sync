@@ -198,7 +198,7 @@ test("verification workflow is read-only and pins the required toolchain and det
 test("release workflow is semver-tagged, reuses verification, and publishes exactly three assets", async () => {
   const workflow = await requiredText("public/.github/workflows/release.yml");
 
-  assert.match(workflow, /tags:\s*\n\s+-\s+["']v0\.2\.0["']/u);
+  assert.match(workflow, /tags:\s*\n\s+-\s+["']v0\.2\.1["']/u);
   assert.match(workflow, /^permissions:\s*\n\s+contents:\s+read\s*$/mu);
   assert.match(workflow, /uses:\s+\.\/\.github\/workflows\/verify\.yml/u);
   assert.match(workflow, /release:[\s\S]*?permissions:\s*\n\s+contents:\s+write/u);
@@ -206,10 +206,16 @@ test("release workflow is semver-tagged, reuses verification, and publishes exac
   assert.match(workflow, /LC_ALL=C\s+sort|sort.*LC_ALL/iu);
   assert.match(workflow, /sha256sum\s+--check\s+SHA256SUMS/u);
   assert.match(workflow, /Apollo\.PZ\.MP\.Sync\.Setup-win-x64\.exe/u);
-  assert.match(workflow, /apollo-native-assist-0\.2\.0-pz42\.20\.2-linux-amd64\.zip/u);
-  const releaseCommand = workflow.match(/gh release create[\s\S]*?--generate-notes/u)?.[0] ?? "";
+  assert.match(workflow, /apollo-native-assist-0\.2\.1-pz42\.20\.2-linux-amd64\.zip/u);
+  const releaseCommand = workflow.match(/gh release create[\s\S]*?--notes-file RELEASE_NOTES\.md/u)?.[0] ?? "";
   assert.match(releaseCommand, /Apollo\.PZ\.MP\.Sync\.Setup-win-x64\.exe/u);
-  assert.match(releaseCommand, /apollo-native-assist-0\.2\.0-pz42\.20\.2-linux-amd64\.zip/u);
+  assert.match(workflow, /tags:\s*\n\s+- "v0\.2\.1"/u);
+  assert.doesNotMatch(workflow, /tags:\s*\n\s+- "v0\.2\.0"/u);
+  assert.match(releaseCommand, /apollo-native-assist-0\.2\.1-pz42\.20\.2-linux-amd64\.zip/u);
+  assert.match(releaseCommand, /--title "Apollo PZ MP Sync Native Assist 0\.2\.1"/u);
+  assert.doesNotMatch(releaseCommand, /--generate-notes/u);
+  assert.match(workflow, /ammunition consumption, weapon-skill XP, and melee durability wear/u);
+  assert.match(workflow, /Workshop client mod at 0\.2\.0; no client-side update is required/u);
   assert.match(releaseCommand, /SHA256SUMS/u);
   assert.match(workflow, /GH_REPO:\s*\$\{\{\s*github\.repository\s*\}\}/u);
   assert.doesNotMatch(workflow, /steamcmd|workshop.*upload|coolify|ssh\s|scp\s|rsync\s|docker\s+(?:context|login)|curl\s+.*(?:https?|ssh)/iu);
@@ -220,4 +226,16 @@ test("package scripts expose the Task 8 documentation gate", async () => {
 
   assert.equal(packageJson.scripts["test:public-docs"], "node --test tests/test_public_docs.mjs");
   assert.equal(packageJson.scripts["test:public-workflow"], "node --test tests/test_public_workflow.mjs");
+});
+
+test("public installer pins the patched SSH transport and fails builds on NuGet advisories", async () => {
+  const project = await requiredText(
+    "installer/src/Apollo.NativeAssist.Installer.Infrastructure/Apollo.NativeAssist.Installer.Infrastructure.csproj",
+  );
+
+  assert.match(project, /PackageReference Include="SSH\.NET" Version="2026\.0\.0"/u);
+  for (const warning of ["NU1901", "NU1902", "NU1903", "NU1904"]) {
+    assert.match(project, new RegExp(`WarningsAsErrors[^<]*${warning}`, "u"));
+  }
+  assert.doesNotMatch(project, /SSH\.NET" Version="2025\.1\.0"/u);
 });
