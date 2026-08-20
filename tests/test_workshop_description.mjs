@@ -27,7 +27,7 @@ test("production Workshop description is balanced evergreen English then Russian
   assert.match(russian, /\[h1\]APOLLO MP SYNC — РУССКИЙ\[\/h1\]/);
 
   for (const required of [
-    "Project Zomboid 42.20.2",
+    "Project Zomboid 42.20.x",
     "Workshop ID:[/b] 3780069702",
     "Mod ID:[/b] ApolloMPSyncB42",
     "WorkshopItems=...;3780069702",
@@ -40,7 +40,7 @@ test("production Workshop description is balanced evergreen English then Russian
   }
 
   for (const required of [
-    "Project Zomboid 42.20.2",
+    "Project Zomboid 42.20.x",
     "Workshop ID:[/b] 3780069702",
     "Mod ID:[/b] ApolloMPSyncB42",
     "WorkshopItems=...;3780069702",
@@ -87,7 +87,7 @@ test("production Workshop description keeps publication headroom", async () => {
 test("production Workshop metadata preserves publication identity and exact tags", async () => {
   const { source } = await productionWorkshop();
   assert.match(source, /^id=3780069702$/m);
-  assert.match(source, /^title=Apollo MP Sync \[B42\.20\.2\]$/m);
+  assert.match(source, /^title=Apollo MP Sync \[B42\.20\+\]$/m);
   assert.match(source, /^visibility=public$/m);
   assert.match(source, /^tags=Build 42, Multiplayer, QoL$/m);
   assert.equal((source.match(/^tags=/gm) ?? []).length, 1);

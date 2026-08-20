@@ -62,7 +62,7 @@ async function makeFixture() {
   const root = await mkdtemp(path.join(tmpdir(), "apollo-package-"));
   const modRoot = "workshop/Contents/mods/ApolloMPSyncB42";
   const modInfo = [
-    "name=Apollo MP Sync [B42.20.2]",
+    "name=Apollo MP Sync [B42.20+]",
     "id=ApolloMPSyncB42",
     "poster=poster.png",
     "pzversion=42",
@@ -70,7 +70,7 @@ async function makeFixture() {
     "modversion=0.1.0",
     "",
   ].join("\n");
-  await put(root, "workshop/workshop.txt", "version=1\ntitle=Apollo MP Sync [B42.20.2]\nvisibility=hidden\n");
+  await put(root, "workshop/workshop.txt", "version=1\ntitle=Apollo MP Sync [B42.20+]\nvisibility=hidden\n");
   await put(root, `${modRoot}/mod.info`, modInfo);
   await put(root, `${modRoot}/42/mod.info`, modInfo);
   await put(root, `${modRoot}/42/media/lua/shared/ApolloMPSync/Protocol.lua`, "local Protocol = {}\nreturn Protocol\n");
@@ -142,13 +142,13 @@ test("package checker rejects a wrong Mod ID", async () => {
 
 test("package checker rejects public visibility before numeric Workshop ID assignment", async () => {
   await expectRejected(async (root) => {
-    await put(root, "workshop/workshop.txt", "version=1\ntitle=Apollo MP Sync [B42.20.2]\nvisibility=public\n");
+    await put(root, "workshop/workshop.txt", "version=1\ntitle=Apollo MP Sync [B42.20+]\nvisibility=public\n");
   }, /visibility=hidden/i);
 });
 
 test("package checker rejects a non-numeric assigned Workshop ID", async () => {
   await expectRejected(async (root) => {
-    await put(root, "workshop/workshop.txt", "version=1\nid=not-assigned\ntitle=Apollo MP Sync [B42.20.2]\nvisibility=hidden\n");
+    await put(root, "workshop/workshop.txt", "version=1\nid=not-assigned\ntitle=Apollo MP Sync [B42.20+]\nvisibility=hidden\n");
   }, /Workshop id must be numeric/i);
 });
 
@@ -259,7 +259,7 @@ test("release checking requires the exact preview and poster set", async () => {
 test("manifest is stable, includes ordinary hidden directories, and ignores only external metadata drift", async () => {
   const root = await makeFixture();
   try {
-    await put(root, "workshop/workshop.txt", "version=1\nid=123456\ntitle=Apollo MP Sync [B42.20.2]\nvisibility=hidden\n");
+    await put(root, "workshop/workshop.txt", "version=1\nid=123456\ntitle=Apollo MP Sync [B42.20+]\nvisibility=hidden\n");
     await put(root, "workshop/node_modules/ordinary.txt", "ordinary");
     await put(root, "workshop/.hidden/readme.md", "ordinary documentation");
     const first = run(manifestScript, [root]);
@@ -274,7 +274,7 @@ test("manifest is stable, includes ordinary hidden directories, and ignores only
     assert.match(after, /\.hidden\/readme\.md/);
     assert.doesNotMatch(after, /SHA256SUMS/);
 
-    await put(root, "workshop/workshop.txt", "version=1\nid=999999\ntitle=Apollo MP Sync [B42.20.2]\nvisibility=hidden\n");
+    await put(root, "workshop/workshop.txt", "version=1\nid=999999\ntitle=Apollo MP Sync [B42.20+]\nvisibility=hidden\n");
     const third = run(manifestScript, [root]);
     assert.equal(third.code, 0, third.output);
     assert.equal(await readFile(manifestPath, "utf8"), before);
@@ -340,13 +340,13 @@ test("download verification permits only valid id and visibility rewrites", asyn
     let result = run(manifestScript, [source]);
     assert.equal(result.code, 0, result.output);
     await cp(path.join(source, "workshop"), downloaded, { recursive: true });
-    await put(downloaded, "workshop.txt", "version=1\nid=123456\ntitle=Apollo MP Sync [B42.20.2]\nvisibility=private\n");
+    await put(downloaded, "workshop.txt", "version=1\nid=123456\ntitle=Apollo MP Sync [B42.20+]\nvisibility=private\n");
 
     result = run(verifyScript, [downloaded, "--source", path.join(source, "workshop"), "--manifest", path.join(source, "SHA256SUMS")]);
     assert.equal(result.code, 0, result.output);
     assert.match(result.output, /PASS download verification/);
 
-    await put(downloaded, "workshop.txt", "version=1\nid=not-numeric\ntitle=Apollo MP Sync [B42.20.2]\nvisibility=private\n");
+    await put(downloaded, "workshop.txt", "version=1\nid=not-numeric\ntitle=Apollo MP Sync [B42.20+]\nvisibility=private\n");
     result = run(verifyScript, [downloaded, "--source", path.join(source, "workshop"), "--manifest", path.join(source, "SHA256SUMS")]);
     assert.notEqual(result.code, 0, result.output);
     assert.match(result.output, /invalid Steam id rewrite/i);
@@ -444,12 +444,12 @@ test("owner-download wrapper requires one equal numeric Workshop ID", async () =
     let result = run(manifestScript, [source]);
     assert.equal(result.code, 0, result.output);
     await cp(path.join(source, "workshop"), downloaded, { recursive: true });
-    await put(downloaded, "workshop.txt", "version=1\nid=654321\ntitle=Apollo MP Sync [B42.20.2]\nvisibility=private\n");
+    await put(downloaded, "workshop.txt", "version=1\nid=654321\ntitle=Apollo MP Sync [B42.20+]\nvisibility=private\n");
     result = run(verifyScript, [downloaded, "--source", path.join(source, "workshop"), "--manifest", path.join(source, "SHA256SUMS")]);
     assert.notEqual(result.code, 0, result.output);
     assert.match(result.output, /Workshop id mismatch: source 123456, downloaded 654321/i);
 
-    await put(downloaded, "workshop.txt", "version=1\nid=123456\nid=123456\ntitle=Apollo MP Sync [B42.20.2]\nvisibility=private\n");
+    await put(downloaded, "workshop.txt", "version=1\nid=123456\nid=123456\ntitle=Apollo MP Sync [B42.20+]\nvisibility=private\n");
     result = run(verifyScript, [downloaded, "--source", path.join(source, "workshop"), "--manifest", path.join(source, "SHA256SUMS")]);
     assert.notEqual(result.code, 0, result.output);
     assert.match(result.output, /exactly one numeric assigned id/i);
@@ -466,12 +466,12 @@ test("owner-download verification rejects a missing or duplicate source Workshop
     let result = run(manifestScript, [source]);
     assert.equal(result.code, 0, result.output);
     await cp(path.join(source, "workshop"), downloaded, { recursive: true });
-    await put(downloaded, "workshop.txt", "version=1\nid=123456\ntitle=Apollo MP Sync [B42.20.2]\nvisibility=private\n");
+    await put(downloaded, "workshop.txt", "version=1\nid=123456\ntitle=Apollo MP Sync [B42.20+]\nvisibility=private\n");
     result = run(verifyScript, [downloaded, "--source", path.join(source, "workshop"), "--manifest", path.join(source, "SHA256SUMS")]);
     assert.notEqual(result.code, 0, result.output);
     assert.match(result.output, /source workshop\.txt must contain exactly one numeric assigned id/i);
 
-    await put(source, "workshop/workshop.txt", "version=1\nid=123456\nid=123456\ntitle=Apollo MP Sync [B42.20.2]\nvisibility=hidden\n");
+    await put(source, "workshop/workshop.txt", "version=1\nid=123456\nid=123456\ntitle=Apollo MP Sync [B42.20+]\nvisibility=hidden\n");
     result = run(manifestScript, [source]);
     assert.equal(result.code, 0, result.output);
     result = run(verifyScript, [downloaded, "--source", path.join(source, "workshop"), "--manifest", path.join(source, "SHA256SUMS")]);

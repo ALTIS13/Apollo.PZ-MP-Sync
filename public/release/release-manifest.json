@@ -1,41 +1,41 @@
 {
   "schemaVersion": 1,
-  "version": "0.2.1",
+  "version": "0.2.2",
   "support": {
     "appId": "380870",
-    "buildId": "24574884",
-    "gameVersion": "42.20.2",
+    "buildId": "24775771",
+    "gameVersion": "42.20.3",
     "javaFeature": 25,
     "os": "linux",
     "arch": "amd64"
   },
   "imageDigest": "sha256:5e3479ea2ef66a4f14686fd3abc3286cf31a82c0e37f737b4b5976ff37da9951",
-  "agentSha256": "7166d8ecfa11e8a2737f528b5abe2d561c474a450f737f36add86bda343bf69a",
+  "agentSha256": "abe17cd769616c0b80d4388cf0ad945108b3fb3edf75d3313097aefb62da433b",
   "fingerprint": {
-    "transportSha256": "3d765d2f91b409960391769314bfa62da034c1766ad69e16e3bbc6afdeb49118",
-    "identitySha256": "0385b3d71e99ba23706f31e46f35b67993949e1e78e078e903a8445574f3794d"
+    "transportSha256": "8c982ca8b5d4aa14dd7ccf7c061df4e83df7b88a71fdaae6674e279de33bbe98",
+    "identitySha256": "38a321f9b4883f71b6fc94b96d24232cbbbca7f3c458a557451a4b0e9168148d"
   },
   "nativeManifestSha256": "86dcfd62671e7a8618c9bbba8433a82425b9c2e896a635c4f21aa70de17108ba",
   "files": [
     {
       "path": "README_EN.md",
-      "sha256": "8859089598ad78e7acf5863e9390561707179115548c37b0de90b7ff65409e1e"
+      "sha256": "94fdabeec81aaad48d48ca29913abb7771ca8f3b6cf3283e56fa73cab4ac3b9b"
     },
     {
       "path": "README_RU.md",
-      "sha256": "67d7506b9fb6c8f57c6d0d56a85704f6bdf9949e54fda9e0ffddcfcff646e04d"
+      "sha256": "56685cda3e88f574acf3370ce4a19d97e20bb55ff0a3bcb5c3dc8ed3b4bc7b53"
     },
     {
       "path": "companion/apollo-native-agent.jar",
-      "sha256": "7166d8ecfa11e8a2737f528b5abe2d561c474a450f737f36add86bda343bf69a"
+      "sha256": "abe17cd769616c0b80d4388cf0ad945108b3fb3edf75d3313097aefb62da433b"
     },
     {
       "path": "companion/apollo-native-entrypoint.sh",
-      "sha256": "3e13c58c73a13062302dd977947d224cedef44c6caafe878f72917ee1a022c9d"
+      "sha256": "38c9405f76c7ababcf007b5c31f29a8419075a0fcd204ad5cdc9a404e2f48953"
     },
     {
       "path": "companion/fingerprint.properties",
-      "sha256": "3d765d2f91b409960391769314bfa62da034c1766ad69e16e3bbc6afdeb49118"
+      "sha256": "8c982ca8b5d4aa14dd7ccf7c061df4e83df7b88a71fdaae6674e279de33bbe98"
     },
     {
       "path": "companion/native-libraries.sha256",

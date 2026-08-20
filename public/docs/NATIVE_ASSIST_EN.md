@@ -15,8 +15,8 @@ Native Assist can become active only when every value matches:
 | Field | Required value |
 | --- | --- |
 | Steam dedicated-server app | `380870` |
-| Dedicated-server BuildID | `24574884` |
-| Project Zomboid version | `42.20.2` |
+| Dedicated-server BuildID | `24775771` |
+| Project Zomboid version | `42.20.3` |
 | Server Java feature | `25` |
 | Server operating system | `linux` |
 | Server architecture | `amd64` |

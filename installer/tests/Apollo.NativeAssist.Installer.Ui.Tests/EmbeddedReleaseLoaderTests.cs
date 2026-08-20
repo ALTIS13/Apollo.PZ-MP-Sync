@@ -14,7 +14,7 @@ namespace Apollo.NativeAssist.Installer.Ui.Tests;
 
 public sealed class EmbeddedReleaseLoaderTests
 {
-    private const string AgentSha256 = "7166d8ecfa11e8a2737f528b5abe2d561c474a450f737f36add86bda343bf69a";
+    private const string AgentSha256 = "abe17cd769616c0b80d4388cf0ad945108b3fb3edf75d3313097aefb62da433b";
     private const string NativeManifestSha256 = "86dcfd62671e7a8618c9bbba8433a82425b9c2e896a635c4f21aa70de17108ba";
     private const string ImageDigest = "sha256:5e3479ea2ef66a4f14686fd3abc3286cf31a82c0e37f737b4b5976ff37da9951";
 
@@ -25,8 +25,8 @@ public sealed class EmbeddedReleaseLoaderTests
     {
         var release = EmbeddedReleaseLoader.Load(new DictionaryReleaseSource(ExactFiles));
 
-        Assert.Equal("0.2.1", release.Version);
-        Assert.Equal("24574884", release.Manifest.Runtime.BuildId);
+        Assert.Equal("0.2.2", release.Version);
+        Assert.Equal("24775771", release.Manifest.Runtime.BuildId);
         Assert.Equal(ImageDigest, release.Manifest.Runtime.ImageDigest);
         Assert.Equal(AgentSha256, release.Bundle.Files["apollo-native-agent.jar"].Sha256);
         Assert.Equal(NativeManifestSha256, release.Bundle.Runtime.NativeManifestSha256);
@@ -111,8 +111,8 @@ public sealed class EmbeddedReleaseLoaderTests
     public void Duplicate_fingerprint_property_is_rejected()
     {
         var files = MutateFingerprintRaw(text => text.Replace(
-            "buildId=24574884\n",
-            "buildId=24574884\nbuildId=24574884\n",
+            "buildId=24775771\n",
+            "buildId=24775771\nbuildId=24775771\n",
             StringComparison.Ordinal));
 
         Assert.Throws<InvalidDataException>(() => Load(files));
@@ -128,8 +128,8 @@ public sealed class EmbeddedReleaseLoaderTests
         {
             "out-of-order properties",
             text => text.Replace(
-                "appId=380870\nbuildId=24574884",
-                "buildId=24574884\nappId=380870",
+                "appId=380870\nbuildId=24775771",
+                "buildId=24775771\nappId=380870",
                 StringComparison.Ordinal)
         },
         {
@@ -397,7 +397,7 @@ public sealed class EmbeddedReleaseLoaderTests
     public void Coordinated_manifest_version_change_is_rejected()
     {
         var files = CloneExactFiles();
-        UpdateManifest(files, root => root["version"] = "0.2.2");
+        UpdateManifest(files, root => root["version"] = "0.2.3");
 
         Assert.Throws<InvalidDataException>(() => Load(files));
     }
@@ -406,7 +406,7 @@ public sealed class EmbeddedReleaseLoaderTests
     {
         { "appId", "appId", "380871", "appId" },
         { "buildId", "buildId", "24574885", "buildId" },
-        { "gameVersion", "gameVersionRevision", "42.20.3", "gameVersion" },
+        { "gameVersion", "gameVersionRevision", "42.20.4", "gameVersion" },
         { "os", "os", "windows", "os" },
         { "arch", "arch", "arm64", "arch" },
     };

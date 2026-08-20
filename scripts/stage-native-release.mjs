@@ -16,26 +16,26 @@ import { parseFingerprintProperties } from "./fingerprint-properties.mjs";
 import { isSensitiveKeyName, walkFiles } from "./package-utils.mjs";
 
 const RELEASE_MANIFEST = "public/release/release-manifest.json";
-const PRODUCTION_FINGERPRINT = "deploy/fingerprints/pz-42.20.2-build-24574884.properties";
+const PRODUCTION_FINGERPRINT = "deploy/fingerprints/pz-42.20.3-build-24775771.properties";
 const PRODUCTION_NATIVE_MANIFEST =
-  "deploy/fingerprints/pz-42.20.2-build-24574884.native-libraries.sha256";
+  "deploy/fingerprints/pz-42.20.3-build-24775771.native-libraries.sha256";
 const HASH = /^[0-9a-f]{64}$/;
 const EXPECTED_METADATA = Object.freeze({
   schemaVersion: 1,
-  version: "0.2.1",
+  version: "0.2.2",
   support: Object.freeze({
     appId: "380870",
-    buildId: "24574884",
-    gameVersion: "42.20.2",
+    buildId: "24775771",
+    gameVersion: "42.20.3",
     javaFeature: 25,
     os: "linux",
     arch: "amd64",
   }),
   imageDigest: "sha256:5e3479ea2ef66a4f14686fd3abc3286cf31a82c0e37f737b4b5976ff37da9951",
-  agentSha256: "7166d8ecfa11e8a2737f528b5abe2d561c474a450f737f36add86bda343bf69a",
+  agentSha256: "abe17cd769616c0b80d4388cf0ad945108b3fb3edf75d3313097aefb62da433b",
   fingerprint: Object.freeze({
-    transportSha256: "3d765d2f91b409960391769314bfa62da034c1766ad69e16e3bbc6afdeb49118",
-    identitySha256: "0385b3d71e99ba23706f31e46f35b67993949e1e78e078e903a8445574f3794d",
+    transportSha256: "8c982ca8b5d4aa14dd7ccf7c061df4e83df7b88a71fdaae6674e279de33bbe98",
+    identitySha256: "38a321f9b4883f71b6fc94b96d24232cbbbca7f3c458a557451a4b0e9168148d",
   }),
   nativeManifestSha256: "86dcfd62671e7a8618c9bbba8433a82425b9c2e896a635c4f21aa70de17108ba",
 });
@@ -526,7 +526,7 @@ async function main() {
     agentJar: path.resolve(projectRoot, agentJar),
     outputRoot: path.join(projectRoot, "build/native-release"),
   });
-  console.log("PASS staged Native Assist 0.2.1 (9 exact files)");
+  console.log("PASS staged Native Assist 0.2.2 (9 exact files)");
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

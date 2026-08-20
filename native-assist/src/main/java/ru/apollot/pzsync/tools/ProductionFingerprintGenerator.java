@@ -39,12 +39,12 @@ import ru.apollot.pzsync.gate.RuntimeFingerprint.EntrypointElement;
 import ru.apollot.pzsync.runtime.RuntimeAdapterSpec;
 
 /**
- * Deterministically emits the one production fingerprint supported by Native Assist 0.2.1.
+ * Deterministically emits the one production fingerprint supported by Native Assist 0.2.2.
  * It reads class entries directly and never loads or initializes Project Zomboid classes.
  */
 public final class ProductionFingerprintGenerator {
     public static final String SERVER_JAR_SHA256 =
-            "09a80a46e4febe9b436c0f4ec539bdfe9e9113b673eeaf8db22415ac34bef416";
+            "bda809fb49004a07dbfc560d059c0ee58d0643ab0f33b53351b13bd62f1d8227";
     public static final String NATIVE_MANIFEST_SHA256 =
             "86dcfd62671e7a8618c9bbba8433a82425b9c2e896a635c4f21aa70de17108ba";
     public static final String IMAGE_REFERENCE =
@@ -61,8 +61,8 @@ public final class ProductionFingerprintGenerator {
     public static final String RUNTIME_LOCK_MODE = "none-captured";
 
     private static final String APP_ID = "380870";
-    private static final String BUILD_ID = "24574884";
-    private static final String GAME_VERSION = "42.20.2";
+    private static final String BUILD_ID = "24775771";
+    private static final String GAME_VERSION = "42.20.3";
     private static final String WORKSHOP_ID = "3780069702";
     private static final String LUA_MOD_ID = "ApolloMPSyncB42";
     private static final String BRIDGE_PROTOCOL = "1";
@@ -120,7 +120,7 @@ public final class ProductionFingerprintGenerator {
 
         {
             var model = new FingerprintModel();
-            model.methodDescriptors.put("RUNTIME_ADAPTER|PZ_42_20_2", "1");
+            model.methodDescriptors.put("RUNTIME_ADAPTER|PZ_42_20_3", "1");
             declareHooks(model, server);
             declareVariants(model, server);
             declareA4Chains(model, server);

@@ -1090,7 +1090,7 @@ public sealed class MainWindowViewModelTests
     }
 
     private static RuntimeProbe Runtime() => new(
-        "380870", "24574884", "42.20.2", 25, "linux", "amd64", "sha256:" + new string('a', 64));
+        "380870", "24775771", "42.20.3", 25, "linux", "amd64", "sha256:" + new string('a', 64));
 
     private static InstallationResult Result(InstallerState state, string reason, string? backup)
         => new(state, reason, backup);

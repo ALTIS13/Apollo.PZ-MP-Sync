@@ -11,7 +11,7 @@ namespace Apollo.NativeAssist.Installer.Ui.Tests;
 public sealed class InstallerSessionTests : IDisposable
 {
     private static readonly RuntimeProbe Runtime = new(
-        "380870", "24574884", "42.20.2", 25, "linux", "amd64", "sha256:" + new string('a', 64));
+        "380870", "24775771", "42.20.3", 25, "linux", "amd64", "sha256:" + new string('a', 64));
     private static readonly SshHostKeyObservation Observation = new("ssh-ed25519", Convert.ToBase64String(new byte[32]).TrimEnd('='));
     private readonly string temporaryDirectory = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "apollo-session-tests-" + Guid.NewGuid().ToString("N"));
 

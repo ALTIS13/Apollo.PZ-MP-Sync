@@ -23,14 +23,14 @@ public static class EmbeddedReleaseLoader
     private const int MaximumJarEntries = 10_000;
     private const long MaximumExpandedJarEntryBytes = 4L * 1024 * 1024;
     private const long MaximumExpandedJarBytes = 32L * 1024 * 1024;
-    private const string ExpectedManifestSha256 = "5d0cb459fa39d1e05c9e23b14703f26c6166ca3bdb43dd2aa7676c9602d9a2db";
-    private const string ExpectedVersion = "0.2.1";
+    private const string ExpectedManifestSha256 = "136048989c56a6abc9ec1bd2d41b8a9e05edc82d852fa46a0a8ea09d42f33500";
+    private const string ExpectedVersion = "0.2.2";
     private const string ExpectedAppId = "380870";
-    private const string ExpectedBuildId = "24574884";
-    private const string ExpectedGameVersion = "42.20.2";
+    private const string ExpectedBuildId = "24775771";
+    private const string ExpectedGameVersion = "42.20.3";
     private const string ExpectedOs = "linux";
     private const string ExpectedArch = "amd64";
-    private const string ExpectedServerJarSha256 = "09a80a46e4febe9b436c0f4ec539bdfe9e9113b673eeaf8db22415ac34bef416";
+    private const string ExpectedServerJarSha256 = "bda809fb49004a07dbfc560d059c0ee58d0643ab0f33b53351b13bd62f1d8227";
     private const string ExpectedImageReference = "ghcr.io/renegade-master/zomboid-dedicated-server@sha256:5e3479ea2ef66a4f14686fd3abc3286cf31a82c0e37f737b4b5976ff37da9951";
 
     private static readonly string[] ResourcePaths =

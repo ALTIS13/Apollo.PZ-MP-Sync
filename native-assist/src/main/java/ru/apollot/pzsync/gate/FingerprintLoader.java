@@ -39,7 +39,7 @@ public final class FingerprintLoader {
             IDENTITY_KEY, "jvmFeature",
             "os", "arch", "workshopId", "luaModId", "bridgeProtocol");
     private static final String PRODUCTION_SERVER_JAR_SHA256 =
-            "09a80a46e4febe9b436c0f4ec539bdfe9e9113b673eeaf8db22415ac34bef416";
+            "bda809fb49004a07dbfc560d059c0ee58d0643ab0f33b53351b13bd62f1d8227";
     private static final String PRODUCTION_NATIVE_MANIFEST_SHA256 =
             "86dcfd62671e7a8618c9bbba8433a82425b9c2e896a635c4f21aa70de17108ba";
     private static final String PRODUCTION_IMAGE_REFERENCE =
@@ -293,10 +293,10 @@ public final class FingerprintLoader {
 
     private static void enforceProductionTuple(RuntimeFingerprint fingerprint) {
         if (!"380870".equals(fingerprint.appId())
-                || !"24574884".equals(fingerprint.buildId())
-                || !"42.20.2".equals(fingerprint.gameVersionRevision())
+                || !"24775771".equals(fingerprint.buildId())
+                || !"42.20.3".equals(fingerprint.gameVersionRevision())
                 || !"1".equals(fingerprint.methodDescriptors().get(
-                        "RUNTIME_ADAPTER|PZ_42_20_2"))) {
+                        "RUNTIME_ADAPTER|PZ_42_20_3"))) {
             return;
         }
         requireProduction("server JAR SHA-256", fingerprint.serverJarSha256(),

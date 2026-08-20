@@ -3,7 +3,7 @@ name: Publish tagged release
 on:
   push:
     tags:
-      - "v0.2.1"
+      - "v0.2.2"
 
 permissions:
   contents: read
@@ -38,7 +38,7 @@ jobs:
         run: |
           set -euo pipefail
           setup="Apollo.PZ.MP.Sync.Setup-win-x64.exe"
-          archive="apollo-native-assist-0.2.1-pz42.20.2-linux-amd64.zip"
+          archive="apollo-native-assist-0.2.2-pz42.20.3-linux-amd64.zip"
           mv "release-assets/$setup" "$setup"
           find "native-release" -type f -exec touch -d "1980-01-01T00:00:00Z" {} +
           (
@@ -47,7 +47,7 @@ jobs:
           )
           sha256sum "$setup" "$archive" > SHA256SUMS
           sha256sum --check SHA256SUMS
-          test "$(find . -maxdepth 1 -type f -printf '%f\n' | LC_ALL=C sort | tr '\n' ' ')" = "Apollo.PZ.MP.Sync.Setup-win-x64.exe SHA256SUMS apollo-native-assist-0.2.1-pz42.20.2-linux-amd64.zip "
+          test "$(find . -maxdepth 1 -type f -printf '%f\n' | LC_ALL=C sort | tr '\n' ' ')" = "Apollo.PZ.MP.Sync.Setup-win-x64.exe SHA256SUMS apollo-native-assist-0.2.2-pz42.20.3-linux-amd64.zip "
 
       - name: Publish exactly three release assets
         env:
@@ -57,16 +57,16 @@ jobs:
         run: |
           set -euo pipefail
           cat > RELEASE_NOTES.md <<'EOF'
-          ## Native Assist 0.2.1
+          ## Native Assist 0.2.2
 
-          This stable server-side patch keeps Apollo's combat validation observation-only so Project Zomboid can always complete its vanilla hit side effects: firearm ammunition consumption, weapon-skill XP, and melee durability wear.
+          This release pins Native Assist to Project Zomboid 42.20.3 after exact server-JAR, native-library, hook-schema, and offline runtime verification. Combat validation remains observation-only so vanilla firearm ammunition consumption, weapon-skill XP, and melee durability wear stay authoritative alongside damage and anti-cheat.
 
-          It supports Project Zomboid 42.20.2 on Linux/amd64 Docker servers. Players keep the Steam Workshop client mod at 0.2.0; no client-side update is required.
+          Native Assist supports the exact Project Zomboid 42.20.3 Linux/amd64 Docker runtime. Players use Workshop client mod 0.2.1, whose declared range covers the 42.20.x family.
           EOF
           gh release create "$GITHUB_REF_NAME" \
             "Apollo.PZ.MP.Sync.Setup-win-x64.exe" \
-            "apollo-native-assist-0.2.1-pz42.20.2-linux-amd64.zip" \
+            "apollo-native-assist-0.2.2-pz42.20.3-linux-amd64.zip" \
             "SHA256SUMS" \
             --verify-tag \
-            --title "Apollo PZ MP Sync Native Assist 0.2.1" \
+            --title "Apollo PZ MP Sync Native Assist 0.2.2" \
             --notes-file RELEASE_NOTES.md

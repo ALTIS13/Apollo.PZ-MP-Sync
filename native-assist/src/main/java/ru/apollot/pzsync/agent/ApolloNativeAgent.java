@@ -76,7 +76,7 @@ public final class ApolloNativeAgent {
         if (result.state() != AssistState.READY) {
             return result;
         }
-        if ("1".equals(expected.methodDescriptors().get("RUNTIME_ADAPTER|PZ_42_20_2"))) {
+        if ("1".equals(expected.methodDescriptors().get("RUNTIME_ADAPTER|PZ_42_20_3"))) {
             var target = TargetRuntimeProbe.evaluate(
                     expected,
                     targetLoader,

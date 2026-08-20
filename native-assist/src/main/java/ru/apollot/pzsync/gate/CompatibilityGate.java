@@ -13,8 +13,8 @@ public interface CompatibilityGate {
 
 final class ExactCompatibilityGate implements CompatibilityGate {
     private static final String APP_ID = "380870";
-    private static final String BUILD_ID = "24574884";
-    private static final String GAME_VERSION_REVISION = "42.20.2";
+    private static final String BUILD_ID = "24775771";
+    private static final String GAME_VERSION_REVISION = "42.20.3";
     private static final int JVM_FEATURE = 25;
     private static final String OS = "linux";
     private static final String ARCH = "amd64";

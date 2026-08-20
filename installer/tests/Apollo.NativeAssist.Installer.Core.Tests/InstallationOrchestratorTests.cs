@@ -7,8 +7,8 @@ public sealed class InstallationOrchestratorTests
 {
     private static readonly RuntimeProbe ExpectedRuntime = new(
         "380870",
-        "24574884",
-        "42.20.2",
+        "24775771",
+        "42.20.3",
         25,
         "linux",
         "amd64",
@@ -20,7 +20,7 @@ public sealed class InstallationOrchestratorTests
     {
         { ExpectedRuntime with { AppId = "108600" }, "runtime-app-id-mismatch" },
         { ExpectedRuntime with { BuildId = "24574885" }, "runtime-build-id-mismatch" },
-        { ExpectedRuntime with { GameVersion = "42.20.3" }, "runtime-game-version-mismatch" },
+        { ExpectedRuntime with { GameVersion = "42.20.4" }, "runtime-game-version-mismatch" },
         { ExpectedRuntime with { JavaFeature = 24 }, "runtime-java-feature-mismatch" },
         { ExpectedRuntime with { Os = "windows" }, "runtime-os-mismatch" },
         { ExpectedRuntime with { Arch = "arm64" }, "runtime-arch-mismatch" },

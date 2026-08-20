@@ -8,7 +8,7 @@ import ru.apollot.pzsync.attack.AttackBudget;
 import ru.apollot.pzsync.history.EntityKind;
 import ru.apollot.pzsync.hooks.NativeDecisionAdapter;
 
-/** Exact, read-only extraction for the three allowlisted 42.20.2 hit leaves. */
+/** Exact, read-only extraction for the three allowlisted 42.20.3 hit leaves. */
 final class ExactHitPacketAccess implements NativeDecisionAdapter.PacketAccess {
     private static final String MELEE_MODE = "native-melee";
     private static final String RANGED_MODE = "native-ranged";

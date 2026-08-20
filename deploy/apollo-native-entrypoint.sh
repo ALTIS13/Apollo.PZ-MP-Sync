@@ -203,18 +203,18 @@ validate_fingerprint() {
         }
         END {
             if (phase != 5 || position != 3) invalid();
-            if (found["appId"] != "380870" || found["buildId"] != "24574884" ||
-                found["gameVersionRevision"] != "42.20.2" || found["jvmFeature"] != "25" ||
+            if (found["appId"] != "380870" || found["buildId"] != "24775771" ||
+                found["gameVersionRevision"] != "42.20.3" || found["jvmFeature"] != "25" ||
                 found["os"] != "linux" || found["arch"] != "amd64" ||
                 found["workshopId"] != "3780069702" || found["luaModId"] != "ApolloMPSyncB42" ||
                 found["bridgeProtocol"] != "1" || !ishash(found["serverJarSha256"]) ||
                 !ishash(found["nativeLibrarySha256"]) || !ishash(found["agentSha256"]) ||
                 !ishash(found["fingerprintSha256"])) invalid();
-            production_adapter="methodDescriptors.RUNTIME_ADAPTER|PZ_42_20_2";
-            if (found["appId"] == "380870" && found["buildId"] == "24574884" &&
-                    found["gameVersionRevision"] == "42.20.2" &&
+            production_adapter="methodDescriptors.RUNTIME_ADAPTER|PZ_42_20_3";
+            if (found["appId"] == "380870" && found["buildId"] == "24775771" &&
+                    found["gameVersionRevision"] == "42.20.3" &&
                     found[production_adapter] == "1") {
-                if (found["serverJarSha256"] != "09a80a46e4febe9b436c0f4ec539bdfe9e9113b673eeaf8db22415ac34bef416" ||
+                if (found["serverJarSha256"] != "bda809fb49004a07dbfc560d059c0ee58d0643ab0f33b53351b13bd62f1d8227" ||
                         found["nativeLibrarySha256"] != "86dcfd62671e7a8618c9bbba8433a82425b9c2e896a635c4f21aa70de17108ba" ||
                         found["imageReference"] != "ghcr.io/renegade-master/zomboid-dedicated-server@sha256:5e3479ea2ef66a4f14686fd3abc3286cf31a82c0e37f737b4b5976ff37da9951" ||
                         found["originalEntrypointCount"] != "2" ||

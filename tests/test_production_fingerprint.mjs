@@ -14,10 +14,10 @@ import {
 
 const root = path.resolve(import.meta.dirname, "..");
 const fingerprintPath = path.join(
-  root, "deploy", "fingerprints", "pz-42.20.2-build-24574884.properties",
+  root, "deploy", "fingerprints", "pz-42.20.3-build-24775771.properties",
 );
 const nativeManifestPath = path.join(
-  root, "deploy", "fingerprints", "pz-42.20.2-build-24574884.native-libraries.sha256",
+  root, "deploy", "fingerprints", "pz-42.20.3-build-24775771.native-libraries.sha256",
 );
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 
@@ -28,10 +28,10 @@ test("production fingerprint is canonical and pins the exact captured tuple", as
   assert.equal(serializeFingerprintProperties(parsed), bytes.toString("utf8"));
   assert.equal(canonicalFingerprintIdentity(bytes), parsed.fingerprintSha256);
   assert.equal(parsed.appId, "380870");
-  assert.equal(parsed.buildId, "24574884");
-  assert.equal(parsed.gameVersionRevision, "42.20.2");
+  assert.equal(parsed.buildId, "24775771");
+  assert.equal(parsed.gameVersionRevision, "42.20.3");
   assert.equal(parsed.serverJarSha256,
-    "09a80a46e4febe9b436c0f4ec539bdfe9e9113b673eeaf8db22415ac34bef416");
+    "bda809fb49004a07dbfc560d059c0ee58d0643ab0f33b53351b13bd62f1d8227");
   assert.equal(parsed.imageReference,
     "ghcr.io/renegade-master/zomboid-dedicated-server@sha256:5e3479ea2ef66a4f14686fd3abc3286cf31a82c0e37f737b4b5976ff37da9951");
   assert.deepEqual(parsed.originalEntrypoint, [
@@ -59,7 +59,7 @@ test("production fingerprint declares only the closed exact adapter grammar", as
   const parsed = parseFingerprintProperties(await readFile(fingerprintPath));
   const keys = Object.keys(parsed.methodDescriptors);
 
-  assert.equal(parsed.methodDescriptors["RUNTIME_ADAPTER|PZ_42_20_2"], "1");
+  assert.equal(parsed.methodDescriptors["RUNTIME_ADAPTER|PZ_42_20_3"], "1");
   assert.equal(keys.filter((key) => key.startsWith("ADAPTER_HOOK|")).length, 6);
   assert.equal(keys.filter((key) => key.startsWith("ADAPTER_VARIANT|")).length, 3);
   assert.equal(keys.filter((key) => key.startsWith("ADAPTER_CAPABILITY|")).length, 8);

@@ -1,20 +1,22 @@
 # Apollo multiplayer sync — current live compatibility contract
 
-Snapshot: 2026-08-08 (read-only).  This is a compatibility boundary, not a
-copy of Workshop code.
+Live identity refreshed after the controlled 2026-08-20 rollout. The bounded
+third-party compatibility scan below remains the 2026-08-08 snapshot; it was
+not silently reclassified during the game update. This is a compatibility
+boundary, not a copy of Workshop code.
 
 ## Live identity
 
 | Field | Observed value |
 | --- | --- |
-| Server game version | `42.20.2` |
-| Dedicated-server Steam BuildID | `24574884` |
-| Active Workshop items | `84` |
-| Active Mod IDs | `91` |
+| Server game version / revision | `42.20.3` / `70207f62e0` |
+| Dedicated-server Steam BuildID | `24775771` |
+| Active Workshop IDs | `85` |
+| Active Mod IDs | `92` |
 | Map | `Shadyside; Falcon Ridge; Falcon Ridge Road Ext; TheWarehouse; Muldraugh, KY` |
 | DoLuaChecksum | `false` |
 
-The exact version came from the current boot/debug-log marker (`version=42.20.2`), not an assumption from the container's `latest` image tag. All 84 owner Workshop item directories were present in `D:\SteamLibrary\steamapps\workshop\content\108600` when inspected.
+The exact version came from the current boot/debug-log marker (`version=42.20.3 70207f62e0`) and the BuildID from the live Steam appmanifest, not from an image tag. The running service uses the pinned image digest and the exact Native Assist `0.2.2` fingerprint described in `docs/compatibility-42.20.3.md`. The 85 configured Workshop IDs and 92 configured Mod IDs were counted from the active Compose file; the retained third-party rows below were not rescanned.
 
 ## Inspection method and limits
 
@@ -119,9 +121,10 @@ All dispositions are deliberately limited to the synchronization implementation'
 | PingItemsFriends | 3776262249 | `42` | event | generic-semantic |
 | PingItemsFriendsDefaultWheel | 3776262249 | `42` | event | generic-semantic |
 | ZomboidManager | 3685323705 | `42` | event | generic-semantic |
+| ApolloMPSyncB42 | 3780069702 | `42` | own bounded Lua package plus exact server-only Native Assist | built-in-adapter |
 
 ## Evidence gaps and operating concerns
 
-- Local client manifest BuildID was `24574865`, while live dedicated server reported `24574884`; local `version.txt` was absent. The live boot marker is authoritative for this snapshot, but local owner metadata is not an exact server binary mirror.
+- The third-party row classifications are still the bounded 2026-08-08 static scan. The 2026-08-20 rollout revalidated Apollo against exact `42.20.3`; it did not assert that every third-party package had been re-reviewed for the patch.
 - `DoLuaChecksum=false` is a live fact and a compatibility/security concern. This task did not change it.
-- Workshop package searches are bounded static evidence. No live code injection, RCON, restart, service control, subscription, download, or remote write occurred.
+- Workshop package searches are bounded static evidence. The controlled live update retains a separate private operator record with its rollback boundary.

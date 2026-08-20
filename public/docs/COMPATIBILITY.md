@@ -2,15 +2,15 @@
 
 ## Supported scope
 
-Apollo MP Sync supports Project Zomboid `42.20.2`. The client Workshop component remains at `0.2.0`; the optional server-side Native Assist release is `0.2.1`. The Workshop component is [item `3780069702`](https://steamcommunity.com/sharedfiles/filedetails/?id=3780069702) with Mod ID `ApolloMPSyncB42`, and clients do not need an update for Native Assist `0.2.1`.
+Apollo MP Sync Workshop `0.2.1` supports Project Zomboid `42.20.x`. The optional server-side Native Assist release is `0.2.2`. The Workshop component is [item `3780069702`](https://steamcommunity.com/sharedfiles/filedetails/?id=3780069702) with Mod ID `ApolloMPSyncB42`; clients do not install Native Assist.
 
 Native Assist is optional and supports exactly this server tuple:
 
 | Field | Required value |
 | --- | --- |
 | Steam dedicated-server app | `380870` |
-| Dedicated-server BuildID | `24574884` |
-| Game version | `42.20.2` |
+| Dedicated-server BuildID | `24775771` |
+| Game version | `42.20.3` |
 | Java feature | `25` |
 | Operating system | `linux` |
 | Architecture | `amd64` |
@@ -20,7 +20,7 @@ The installer supports Docker Compose over SSH. Coolify and local Windows dedica
 
 ## Unsupported versions and environments
 
-Build 41 is not supported. Other Build 42 patches are not supported. A different dedicated-server BuildID, Java feature, operating system, architecture, image digest, server JAR, native-library set, launcher, or fingerprint is incompatible with Native Assist.
+Build 41 and Build 42.21+ are not supported by the Workshop release. A different dedicated-server BuildID, Java feature, operating system, architecture, image digest, server JAR, native-library set, launcher, or fingerprint is incompatible with Native Assist even when the Lua/Workshop component still accepts the 42.20.x client family.
 
 Clients use the Workshop mod on supported servers and do not need the server runtime tuple or Java.
 

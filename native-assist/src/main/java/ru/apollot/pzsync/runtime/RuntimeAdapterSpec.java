@@ -35,8 +35,8 @@ import ru.apollot.pzsync.hooks.HookDescriptor;
  */
 public final class RuntimeAdapterSpec {
     public static final String EXACT_APP_ID = "380870";
-    public static final String EXACT_BUILD_ID = "24574884";
-    public static final String EXACT_GAME_VERSION = "42.20.2";
+    public static final String EXACT_BUILD_ID = "24775771";
+    public static final String EXACT_GAME_VERSION = "42.20.3";
     public static final int MAX_CHAIN_DEPTH = 4;
     private static final String ADAPTER_PREFIX = "RUNTIME_ADAPTER|";
     private static final String HOOK_PREFIX = "ADAPTER_HOOK|";
@@ -1067,7 +1067,7 @@ public final class RuntimeAdapterSpec {
 
     private static void fail(String reason) { throw new RuntimeAdapterException(reason); }
 
-    public enum AdapterId { PZ_42_20_2 }
+    public enum AdapterId { PZ_42_20_3 }
     public enum ReturnPolicy {
         VOID_SUCCESS, PREVALIDATED_VOID;
         boolean matches(Type returnType) { return returnType.getSort() == Type.VOID; }

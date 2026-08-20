@@ -4,12 +4,13 @@ import path from "node:path";
 import { parseFingerprintProperties } from "./fingerprint-properties.mjs";
 import { walkFiles, walkTree } from "./package-utils.mjs";
 
-const WORKSHOP_VERSION = "0.2.0";
-const NATIVE_ASSIST_VERSION = "0.2.1";
+const WORKSHOP_VERSION = "0.2.1";
+const WORKSHOP_GAME_VERSION = "42.20";
+const NATIVE_ASSIST_VERSION = "0.2.2";
 const EXACT = Object.freeze({
   appId: "380870",
-  buildId: "24574884",
-  gameVersionRevision: "42.20.2",
+  buildId: "24775771",
+  gameVersionRevision: "42.20.3",
   workshopId: "3780069702",
   luaModId: "ApolloMPSyncB42",
   bridgeProtocol: "1",
@@ -18,11 +19,11 @@ const EXACT = Object.freeze({
   arch: "amd64",
 });
 const HASH = /^[0-9a-f]{64}$/;
-const PRODUCTION_SERVER_JAR_SHA256 = "09a80a46e4febe9b436c0f4ec539bdfe9e9113b673eeaf8db22415ac34bef416";
+const PRODUCTION_SERVER_JAR_SHA256 = "bda809fb49004a07dbfc560d059c0ee58d0643ab0f33b53351b13bd62f1d8227";
 const PRODUCTION_NATIVE_MANIFEST_SHA256 = "86dcfd62671e7a8618c9bbba8433a82425b9c2e896a635c4f21aa70de17108ba";
-const PRODUCTION_AGENT_SHA256 = "7166d8ecfa11e8a2737f528b5abe2d561c474a450f737f36add86bda343bf69a";
-const PRODUCTION_FINGERPRINT_IDENTITY = "0385b3d71e99ba23706f31e46f35b67993949e1e78e078e903a8445574f3794d";
-const PRODUCTION_FINGERPRINT_TRANSPORT_SHA256 = "3d765d2f91b409960391769314bfa62da034c1766ad69e16e3bbc6afdeb49118";
+const PRODUCTION_AGENT_SHA256 = "abe17cd769616c0b80d4388cf0ad945108b3fb3edf75d3313097aefb62da433b";
+const PRODUCTION_FINGERPRINT_IDENTITY = "38a321f9b4883f71b6fc94b96d24232cbbbca7f3c458a557451a4b0e9168148d";
+const PRODUCTION_FINGERPRINT_TRANSPORT_SHA256 = "8c982ca8b5d4aa14dd7ccf7c061df4e83df7b88a71fdaae6674e279de33bbe98";
 const PRODUCTION_IMAGE_REFERENCE = "ghcr.io/renegade-master/zomboid-dedicated-server@sha256:5e3479ea2ef66a4f14686fd3abc3286cf31a82c0e37f737b4b5976ff37da9951";
 const PRODUCTION_ENTRYPOINT = Object.freeze([
   Object.freeze({
@@ -113,7 +114,7 @@ function isProductionAdapter(fingerprint, descriptors) {
   return fingerprint.appId === EXACT.appId
     && fingerprint.buildId === EXACT.buildId
     && fingerprint.gameVersionRevision === EXACT.gameVersionRevision
-    && descriptors?.["RUNTIME_ADAPTER|PZ_42_20_2"] === "1";
+    && descriptors?.["RUNTIME_ADAPTER|PZ_42_20_3"] === "1";
 }
 
 async function exists(filePath) {
@@ -152,8 +153,8 @@ async function checkVersionTuple() {
     const contents = await text(relativePath);
     requireEqual(`${relativePath} modversion`, metadataValue(contents, "modversion"), WORKSHOP_VERSION);
     requireEqual(`${relativePath} id`, metadataValue(contents, "id"), EXACT.luaModId);
-    requireEqual(`${relativePath} versionMin`, metadataValue(contents, "versionMin"), EXACT.gameVersionRevision);
-    requireEqual(`${relativePath} versionMax`, metadataValue(contents, "versionMax"), EXACT.gameVersionRevision);
+    requireEqual(`${relativePath} versionMin`, metadataValue(contents, "versionMin"), WORKSHOP_GAME_VERSION);
+    requireEqual(`${relativePath} versionMax`, metadataValue(contents, "versionMax"), WORKSHOP_GAME_VERSION);
   }
 
   const build = await text("native-assist/build.gradle.kts");
@@ -310,7 +311,7 @@ async function checkFingerprint() {
       PRODUCTION_FINGERPRINT_TRANSPORT_SHA256);
     const keys = Object.keys(descriptors ?? {});
     requireEqual("production fingerprint adapter marker",
-      descriptors?.["RUNTIME_ADAPTER|PZ_42_20_2"], "1");
+      descriptors?.["RUNTIME_ADAPTER|PZ_42_20_3"], "1");
     for (const [prefix, count] of [
       ["ADAPTER_HOOK|", 6], ["ADAPTER_VARIANT|", 3],
       ["ADAPTER_CAPABILITY|", 8], ["ADAPTER_PROOF|", 1],

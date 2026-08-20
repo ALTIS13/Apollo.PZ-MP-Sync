@@ -47,7 +47,7 @@ test("public README describes the current product and canonical entry points", a
   const readme = await requiredText("public/README.md");
 
   assert.match(readme, /Apollo MP Sync/u);
-  assert.match(readme, /Project Zomboid.*42\.20\.2/isu);
+  assert.match(readme, /Project Zomboid.*42\.20\.x/isu);
   assert.match(readme, /Workshop/iu);
   assert.match(readme, /Native Assist/iu);
   assert.match(readme, /fail(?:s)? closed|fail-closed/iu);
@@ -96,7 +96,7 @@ test("administrator EN and RU guides are equivalent command-free Docker-over-SSH
     ["Native Assist RU", ru, ["SSH-хост", "SSH-порт", "имя пользователя SSH", "каталог развёртывания", "файл.*Compose", "точное имя сервиса"]],
   ];
   for (const [label, text, fields] of guides) {
-    for (const value of ["380870", "24574884", "42.20.2", "25", "linux", "amd64", imageDigest]) {
+    for (const value of ["380870", "24775771", "42.20.3", "25", "linux", "amd64", imageDigest]) {
       assert.match(text, new RegExp(value.replaceAll(".", "\\."), "iu"), `${label} is missing exact support value ${value}`);
     }
     for (const field of fields) {
@@ -136,11 +136,14 @@ test("Russian administrator actions use the exact localized WPF button labels", 
 test("compatibility guide states the exact boundary and known limits", async () => {
   const compatibility = await requiredText("public/docs/COMPATIBILITY.md");
 
-  for (const value of ["380870", "24574884", "42.20.2", "25", "linux", "amd64", imageDigest, "3780069702", "ApolloMPSyncB42"]) {
+  for (const value of ["380870", "24775771", "42.20.3", "25", "linux", "amd64", imageDigest, "3780069702", "ApolloMPSyncB42"]) {
     assert.match(compatibility, new RegExp(value.replaceAll(".", "\\."), "iu"), `compatibility guide is missing ${value}`);
   }
   assert.match(compatibility, /Build 41.*not supported/isu);
-  assert.match(compatibility, /other Build 42.*not supported/isu);
+  assert.match(compatibility, /Build 42\.21\+.*not supported/isu);
+  assert.match(compatibility, /42\.20\.x/iu);
+  assert.match(compatibility, /Workshop `0\.2\.1`/u);
+  assert.match(compatibility, /Native Assist release is `0\.2\.2`/u);
   assert.match(compatibility, /latency.*cannot|cannot eliminate latency/isu);
   assert.match(compatibility, /mods?.*same actions|mods?.*replace/isu);
   assert.match(compatibility, /ABSENT.*DISABLED.*INCOMPATIBLE.*CIRCUIT_OPEN/isu);
@@ -198,7 +201,7 @@ test("verification workflow is read-only and pins the required toolchain and det
 test("release workflow is semver-tagged, reuses verification, and publishes exactly three assets", async () => {
   const workflow = await requiredText("public/.github/workflows/release.yml");
 
-  assert.match(workflow, /tags:\s*\n\s+-\s+["']v0\.2\.1["']/u);
+  assert.match(workflow, /tags:\s*\n\s+-\s+["']v0\.2\.2["']/u);
   assert.match(workflow, /^permissions:\s*\n\s+contents:\s+read\s*$/mu);
   assert.match(workflow, /uses:\s+\.\/\.github\/workflows\/verify\.yml/u);
   assert.match(workflow, /release:[\s\S]*?permissions:\s*\n\s+contents:\s+write/u);
@@ -206,16 +209,16 @@ test("release workflow is semver-tagged, reuses verification, and publishes exac
   assert.match(workflow, /LC_ALL=C\s+sort|sort.*LC_ALL/iu);
   assert.match(workflow, /sha256sum\s+--check\s+SHA256SUMS/u);
   assert.match(workflow, /Apollo\.PZ\.MP\.Sync\.Setup-win-x64\.exe/u);
-  assert.match(workflow, /apollo-native-assist-0\.2\.1-pz42\.20\.2-linux-amd64\.zip/u);
+  assert.match(workflow, /apollo-native-assist-0\.2\.2-pz42\.20\.3-linux-amd64\.zip/u);
   const releaseCommand = workflow.match(/gh release create[\s\S]*?--notes-file RELEASE_NOTES\.md/u)?.[0] ?? "";
   assert.match(releaseCommand, /Apollo\.PZ\.MP\.Sync\.Setup-win-x64\.exe/u);
-  assert.match(workflow, /tags:\s*\n\s+- "v0\.2\.1"/u);
-  assert.doesNotMatch(workflow, /tags:\s*\n\s+- "v0\.2\.0"/u);
-  assert.match(releaseCommand, /apollo-native-assist-0\.2\.1-pz42\.20\.2-linux-amd64\.zip/u);
-  assert.match(releaseCommand, /--title "Apollo PZ MP Sync Native Assist 0\.2\.1"/u);
+  assert.match(workflow, /tags:\s*\n\s+- "v0\.2\.2"/u);
+  assert.doesNotMatch(workflow, /tags:\s*\n\s+- "v0\.2\.1"/u);
+  assert.match(releaseCommand, /apollo-native-assist-0\.2\.2-pz42\.20\.3-linux-amd64\.zip/u);
+  assert.match(releaseCommand, /--title "Apollo PZ MP Sync Native Assist 0\.2\.2"/u);
   assert.doesNotMatch(releaseCommand, /--generate-notes/u);
   assert.match(workflow, /ammunition consumption, weapon-skill XP, and melee durability wear/u);
-  assert.match(workflow, /Workshop client mod at 0\.2\.0; no client-side update is required/u);
+  assert.match(workflow, /Workshop client mod 0\.2\.1/u);
   assert.match(releaseCommand, /SHA256SUMS/u);
   assert.match(workflow, /GH_REPO:\s*\$\{\{\s*github\.repository\s*\}\}/u);
   assert.doesNotMatch(workflow, /steamcmd|workshop.*upload|coolify|ssh\s|scp\s|rsync\s|docker\s+(?:context|login)|curl\s+.*(?:https?|ssh)/iu);

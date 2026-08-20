@@ -63,7 +63,7 @@ function refreshIdentity(contents) {
 
 function exactFingerprint(agent, serverJar, nativeManifest, entrypoint) {
   return serializeFingerprintProperties({
-    appId: "380870", buildId: "24574884", gameVersionRevision: "42.20.2",
+    appId: "380870", buildId: "24775771", gameVersionRevision: "42.20.3",
     serverJarSha256: hash(serverJar), nativeLibrarySha256: hash(nativeManifest), agentSha256: hash(agent),
     imageReference: `fixture.invalid/apollo/native-assist@sha256:${"1".repeat(64)}`,
     originalEntrypoint: Array.isArray(entrypoint) ? entrypoint : [entrypoint],
@@ -386,7 +386,7 @@ test("wrapper classifies the exact adapter by tuple instead of filename", async 
   try {
     const file = path.join(instance.companion, "fingerprint.properties");
     const fingerprint = parseFingerprintProperties(await readFile(file, "utf8"));
-    fingerprint.methodDescriptors["RUNTIME_ADAPTER|PZ_42_20_2"] = "1";
+    fingerprint.methodDescriptors["RUNTIME_ADAPTER|PZ_42_20_3"] = "1";
     delete fingerprint.fingerprintSha256;
     const changed = serializeFingerprintProperties(fingerprint);
     await writeFile(file, changed);
@@ -480,7 +480,7 @@ test("public deployment inputs remain non-production and document count-frame, i
   assert.match(env, /APOLLO_ORIGINAL_ENTRYPOINT_0_PATH=\/bin\/bash/);
   assert.match(env, /APOLLO_ORIGINAL_ENTRYPOINT_1_PATH=\/home\/steam\/run_server\.sh/);
   assert.match(env, /Full-file transport hash/);
-  const fingerprint = await readFile(path.join(deploy, "fingerprints", "pz-42.20.2-build-24574884.properties"), "utf8");
+  const fingerprint = await readFile(path.join(deploy, "fingerprints", "pz-42.20.3-build-24775771.properties"), "utf8");
   const readme = await readFile(path.join(root, "public", "docs", "NATIVE_ASSIST_RU.md"), "utf8");
   assert.match(fingerprint, /fingerprintSha256=/i);
   assert.match(fingerprint, /runtimeLockMode=none-captured/i);

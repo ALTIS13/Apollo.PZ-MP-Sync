@@ -1,6 +1,6 @@
 # Apollo MP Sync
 
-Apollo MP Sync improves the presentation of supported multiplayer actions in Project Zomboid `42.20.2` while leaving movement, physics, zombies, anti-cheat, relay, and damage under the vanilla server's authority.
+Apollo MP Sync improves the presentation of supported multiplayer actions across Project Zomboid `42.20.x` while leaving movement, physics, zombies, anti-cheat, relay, and damage under the vanilla server's authority.
 
 Players use the [Steam Workshop item](https://steamcommunity.com/sharedfiles/filedetails/?id=3780069702). Server administrators may optionally add Native Assist with the command-free Windows installer from the [latest public GitHub Release](https://github.com/ALTIS13/Apollo.PZ-MP-Sync/releases/latest).
 

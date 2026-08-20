@@ -35,13 +35,13 @@
     "kind": "file"
   },
   {
-    "source": "deploy/fingerprints/pz-42.20.2-build-24574884.native-libraries.sha256",
-    "destination": "deploy/fingerprints/pz-42.20.2-build-24574884.native-libraries.sha256",
+    "source": "deploy/fingerprints/pz-42.20.3-build-24775771.native-libraries.sha256",
+    "destination": "deploy/fingerprints/pz-42.20.3-build-24775771.native-libraries.sha256",
     "kind": "file"
   },
   {
-    "source": "deploy/fingerprints/pz-42.20.2-build-24574884.properties",
-    "destination": "deploy/fingerprints/pz-42.20.2-build-24574884.properties",
+    "source": "deploy/fingerprints/pz-42.20.3-build-24775771.properties",
+    "destination": "deploy/fingerprints/pz-42.20.3-build-24775771.properties",
     "kind": "file"
   },
   {

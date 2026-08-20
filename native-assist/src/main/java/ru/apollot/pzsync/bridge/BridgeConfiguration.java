@@ -1,6 +1,6 @@
 package ru.apollot.pzsync.bridge;
 
-/** The one bounded native-assist configuration accepted by the 42.20.2 bridge. */
+/** The one bounded native-assist configuration accepted by the 42.20.3 bridge. */
 public final class BridgeConfiguration {
     private BridgeConfiguration() {}
 

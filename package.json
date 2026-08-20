@@ -1,6 +1,6 @@
 {
   "name": "apollo-mp-sync-b42",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "scripts": {
     "test": "node tests/test_sandbox_options.mjs && node tests/test_compatibility_adapters.mjs && fengari -e \"local ok,err=pcall(dofile,'tests/run.lua'); if not ok then io.stderr:write(tostring(err)..'\\n'); os.exit(1) end\" && node --test tests/test_package_tools.mjs tests/test_release_gates.mjs tests/test_fingerprint_identity.mjs tests/test_production_fingerprint.mjs tests/test_workshop_description.mjs tests/deploy/test_deploy_contract.mjs tests/deploy/test_exact_runtime_contract.mjs",

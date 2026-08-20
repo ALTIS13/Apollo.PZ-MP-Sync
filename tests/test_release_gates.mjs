@@ -21,7 +21,7 @@ const exactFingerprintFixture = path.join(
   "tests", "fixtures", "fingerprint", "exact-fingerprint.properties",
 );
 const productionFingerprint = path.join(
-  projectRoot, "deploy", "fingerprints", "pz-42.20.2-build-24574884.properties",
+  projectRoot, "deploy", "fingerprints", "pz-42.20.3-build-24775771.properties",
 );
 
 async function put(root, relativePath, contents) {
@@ -42,21 +42,21 @@ async function fixture() {
   const root = await mkdtemp(path.join(tmpdir(), "apollo-release-"));
   const modRoot = "workshop/Contents/mods/ApolloMPSyncB42";
   const modInfo = [
-    "name=Apollo MP Sync [B42.20.2]",
+    "name=Apollo MP Sync [B42.20+]",
     "id=ApolloMPSyncB42",
     "description=Stable Workshop description.",
     "pzversion=42",
-    "versionMin=42.20.2",
-    "versionMax=42.20.2",
-    "modversion=0.2.0",
+    "versionMin=42.20",
+    "versionMax=42.20",
+    "modversion=0.2.1",
     "",
   ].join("\n");
-  await put(root, "package.json", JSON.stringify({ name: "apollo-mp-sync-b42", version: "0.2.0" }));
+  await put(root, "package.json", JSON.stringify({ name: "apollo-mp-sync-b42", version: "0.2.1" }));
   await put(root, "package-lock.json", JSON.stringify({
     name: "apollo-mp-sync-b42",
-    version: "0.2.0",
+    version: "0.2.1",
     lockfileVersion: 3,
-    packages: { "": { name: "apollo-mp-sync-b42", version: "0.2.0" } },
+    packages: { "": { name: "apollo-mp-sync-b42", version: "0.2.1" } },
   }));
   await put(root, `${modRoot}/mod.info`, modInfo);
   await put(root, `${modRoot}/42/mod.info`, modInfo);
@@ -69,12 +69,12 @@ async function fixture() {
     "return Protocol",
     "",
   ].join("\n"));
-  await put(root, "native-assist/build.gradle.kts", "version = \"0.2.1\"\n");
+  await put(root, "native-assist/build.gradle.kts", "version = \"0.2.2\"\n");
   await put(root, "native-assist/src/main/java/ru/apollot/pzsync/gate/CompatibilityGate.java", [
     "final class CompatibilityGate {",
     "  static final String APP_ID = \"380870\";",
-    "  static final String BUILD_ID = \"24574884\";",
-    "  static final String GAME_VERSION_REVISION = \"42.20.2\";",
+    "  static final String BUILD_ID = \"24775771\";",
+    "  static final String GAME_VERSION_REVISION = \"42.20.3\";",
     "  static final String WORKSHOP_ID = \"3780069702\";",
     "  static final String LUA_MOD_ID = \"ApolloMPSyncB42\";",
     "  static final String BRIDGE_PROTOCOL = \"1\";",
@@ -88,8 +88,8 @@ async function fixture() {
 function exactFingerprint(agentSha256, classHash = "a".repeat(64)) {
   return {
     appId: "380870",
-    buildId: "24574884",
-    gameVersionRevision: "42.20.2",
+    buildId: "24775771",
+    gameVersionRevision: "42.20.3",
     serverJarSha256: "b".repeat(64),
     nativeLibrarySha256: "c".repeat(64),
     agentSha256,
@@ -193,7 +193,7 @@ async function expectRejected(mutate, diagnostic, args = []) {
   }
 }
 
-test("release gate keeps Workshop 0.2.0 while accepting Native Assist 0.2.1", async () => {
+test("release gate accepts Workshop 0.2.1 for 42.20.x and Native Assist 0.2.2 for exact 42.20.3", async () => {
   const root = await fixture();
   try {
     const result = run(root);
@@ -222,7 +222,7 @@ for (const [relativePath, diagnostic] of [
   ["workshop/hidden/server.class", /forbidden server\/private Workshop artifact.*server\.class/i],
   ["workshop/.native/libpzsync.so.1", /forbidden server\/private Workshop artifact.*libpzsync\.so\.1/i],
   ["workshop/config/runtime-fingerprint.properties", /forbidden server\/private Workshop artifact.*runtime-fingerprint\.properties/i],
-  ["workshop/fingerprints/pz-42.20.2-build-24574884.json", /forbidden server\/private Workshop artifact.*fingerprints.*pz-42\.20\.2/i],
+  ["workshop/fingerprints/pz-42.20.3-build-24775771.json", /forbidden server\/private Workshop artifact.*fingerprints.*pz-42\.20\.3/i],
   ["workshop/private/server-private.key", /forbidden server\/private Workshop artifact.*server-private\.key/i],
   ["workshop/deploy/credentials.env", /forbidden server\/private Workshop artifact.*credentials\.env/i],
   ["workshop/.ops-private/GameNode.json", /forbidden server\/private Workshop artifact.*\.ops-private.*GameNode\.json/i],
@@ -381,7 +381,7 @@ test("native release gate rejects a missing exact runtime fingerprint", async ()
   await expectRejected(
     async () => {},
     /exact native fingerprint is missing/i,
-    ["--native-fingerprint", "deploy/fingerprints/pz-42.20.2-build-24574884.json"],
+    ["--native-fingerprint", "deploy/fingerprints/pz-42.20.3-build-24775771.json"],
   );
 });
 
@@ -471,7 +471,7 @@ test("native release gate rejects a production filename with an unpinned agent b
     const agentHash = createHash("sha256").update(agentBytes).digest("hex");
     await put(root, "first.jar", agentBytes);
     await put(root, "second.jar", agentBytes);
-    const relative = "deploy/fingerprints/pz-42.20.2-build-24574884.properties";
+    const relative = "deploy/fingerprints/pz-42.20.3-build-24775771.properties";
     await put(root, relative, await productionPropertiesForAgent(agentHash));
     const result = run(root, "--native-fingerprint", relative,
       "--agent-jar-a", "first.jar", "--agent-jar-b", "second.jar");
@@ -525,7 +525,7 @@ test("native production release gate rejects a canonically re-signed class mutat
     const agentHash = createHash("sha256").update(agentBytes).digest("hex");
     await put(root, "first.jar", agentBytes);
     await put(root, "second.jar", agentBytes);
-    const relative = "deploy/fingerprints/pz-42.20.2-build-24574884.properties";
+    const relative = "deploy/fingerprints/pz-42.20.3-build-24775771.properties";
     await put(root, relative, await productionPropertiesForAgent(agentHash, (value) => {
       const [name] = Object.keys(value.classHashes);
       value.classHashes[name] = "0".repeat(64);
@@ -552,7 +552,7 @@ for (const [label, mutate, diagnostic] of [
       const agentHash = createHash("sha256").update(agentBytes).digest("hex");
       await put(root, "first.jar", agentBytes);
       await put(root, "second.jar", agentBytes);
-      const relative = "deploy/fingerprints/pz-42.20.2-build-24574884.properties";
+      const relative = "deploy/fingerprints/pz-42.20.3-build-24775771.properties";
       await put(root, relative, await productionPropertiesForAgent(agentHash, mutate));
       const result = run(root, "--native-fingerprint", relative,
         "--agent-jar-a", "first.jar", "--agent-jar-b", "second.jar");
@@ -570,7 +570,7 @@ test("native release gate rejects one missing production agent build", async () 
     const agentBytes = "same-production-build";
     const agentHash = createHash("sha256").update(agentBytes).digest("hex");
     await put(root, "first.jar", agentBytes);
-    const relative = "deploy/fingerprints/pz-42.20.2-build-24574884.properties";
+    const relative = "deploy/fingerprints/pz-42.20.3-build-24775771.properties";
     await put(root, relative, await productionPropertiesForAgent(agentHash));
     const result = run(root, "--native-fingerprint", relative,
       "--agent-jar-a", "first.jar");
@@ -605,7 +605,7 @@ test("native release gate rejects a JSON fingerprint dialect", async () => {
 test("release gate rejects a mismatched version tuple", async () => {
   await expectRejected(
     (root) => put(root, "native-assist/build.gradle.kts", "version = \"0.1.1\"\n"),
-    /native agent version mismatch.*expected 0\.2\.1/i,
+    /native agent version mismatch.*expected 0\.2\.2/i,
   );
 });
 

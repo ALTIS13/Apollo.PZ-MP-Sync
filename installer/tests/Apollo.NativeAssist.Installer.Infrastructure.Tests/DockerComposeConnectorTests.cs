@@ -13,11 +13,11 @@ public sealed class DockerComposeConnectorTests
 {
     private const string ImageDigest = "sha256:5e3479ea2ef66a4f14686fd3abc3286cf31a82c0e37f737b4b5976ff37da9951";
     private const string ImageReference = "ghcr.io/renegade-master/zomboid-dedicated-server@" + ImageDigest;
-    private const string ServerJarSha = "09a80a46e4febe9b436c0f4ec539bdfe9e9113b673eeaf8db22415ac34bef416";
+    private const string ServerJarSha = "bda809fb49004a07dbfc560d059c0ee58d0643ab0f33b53351b13bd62f1d8227";
     private const string NativeManifestSha = "86dcfd62671e7a8618c9bbba8433a82425b9c2e896a635c4f21aa70de17108ba";
 
     private static readonly RuntimeProbe ExpectedRuntime = new(
-        "380870", "24574884", "42.20.2", 25, "linux", "amd64", ImageDigest);
+        "380870", "24775771", "42.20.3", 25, "linux", "amd64", ImageDigest);
 
     private static readonly VerifiedReleaseManifest Manifest = new(ExpectedRuntime);
 
@@ -378,8 +378,8 @@ public sealed class DockerComposeConnectorTests
             {
                 name = "project-zomboid",
                 appId = "380870",
-                buildId = "24574884",
-                gameVersion = "42.20.2",
+                buildId = "24775771",
+                gameVersion = "42.20.3",
                 javaFeature = 25,
                 os = "linux",
                 arch = "amd64",

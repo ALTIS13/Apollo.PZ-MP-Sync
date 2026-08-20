@@ -8,7 +8,7 @@ import ru.apollot.pzsync.history.HistoryStore;
 import ru.apollot.pzsync.history.StateSample;
 import ru.apollot.pzsync.hooks.NativeDecisionAdapter;
 
-/** Exact enter-copy/exit-commit lifecycle for accepted 42.20.2 zombie state. */
+/** Exact enter-copy/exit-commit lifecycle for accepted 42.20.3 zombie state. */
 final class ExactZombieRuntimeAccess implements NativeDecisionAdapter.PacketAccess {
     private static final RuntimeAdapterSpec.AccessorRole[] PACKET_ROLES = {
         RuntimeAdapterSpec.AccessorRole.ZOMBIE_PACKET,
